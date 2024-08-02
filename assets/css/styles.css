@@ -347,27 +347,28 @@ img {
     margin-left: 0; /* Remove left margin */
     text-align: left; /* Align text to the left */
   }
+
   .skills__img {
-      width: 100%;
-      height: auto;
-      max-width: 400px; /* Set a max width for larger screens */
-      display: block;
-      margin: 0 auto;
-  }
-  
-  @media (max-width: 768px) {
-      .skills__img {
-          max-width: 300px; /* Adjust max width for medium screens */
-      }
-  }
-  
-  @media (max-width: 480px) {
-      .skills__img {
-          max-width: 200px; /* Adjust max width for smaller screens */
-      }
+    width: 100%; /* Ensure image scales with container */
+    max-width: 300px; /* Set a max width for smaller screens */
+    height: auto;
+    margin: 0 auto;
   }
 }
 
+/* Adjustments for medium screens */
+@media (max-width: 768px) {
+  .skills__img {
+    max-width: 250px; /* Adjust max width for medium screens */
+  }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 480px) {
+  .skills__img {
+    max-width: 200px; /* Adjust max width for smaller screens */
+  }
+}
 
 
 
