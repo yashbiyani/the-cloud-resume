@@ -357,9 +357,28 @@ img {
 }
 
 /* Adjustments for medium screens */
-@media (max-width: 768px) {
-  .skills__img {
-    max-width: 250px; /* Adjust max width for medium screens */
+@media (max-width: 820px) {
+ 
+  .skills__container {
+    grid-template-columns: 1fr; /* Stack items vertically */
+    gap: 1rem; /* Reduce gap for smaller screens */
+  }
+
+  .skills__data {
+    flex-direction: column; /* Stack elements within each skill item vertically */
+    align-items: flex-start; /* Align items to the start */
+    padding: 1rem; /* Increase padding for better spacing */
+  }
+
+  .skills__names {
+    width: 100%; /* Full width for smaller screens */
+    margin-bottom: 0.5rem; /* Add margin below the names */
+  }
+
+  .skills__description {
+    width: 100%; /* Full width for smaller screens */
+    margin-left: 0; /* Remove left margin */
+    text-align: left; /* Align text to the left */
   }
 }
 
