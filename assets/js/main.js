@@ -62,12 +62,9 @@ const counter = document.querySelector(".counter-number");
 async function updateCounter() {
     let response = await fetch("https://tzztk47mb3zkerizaarl67ppye0eeqoq.lambda-url.us-east-1.on.aws/");
     let data = await response.json();
-    console.log(data); // Log the data to check its structure
     counter.innerHTML = `Views: ${data}`;
   }
 
-document.addEventListener('DOMContentLoaded', () => {
-    updateCounter();
-});
+updateCounter();
 
 
