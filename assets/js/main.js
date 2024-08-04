@@ -59,7 +59,7 @@ sr.reveal('.skills__data, .work__img, .contact__input', { interval: 200 });
 /*===== FETCH VISITOR COUNT =====*/
 async function fetchVisitorCount() {
     try {
-        const response = await fetch('https://0fhb1kbt0i.execute-api.us-east-1.amazonaws.com');
+        const response = await fetch('https://0fhb1kbt0i.execute-api.us-east-1.amazonaws.com/VisitorCountFunction');
         const data = await response.json();
         document.getElementById('visitor-count').innerText = data.count;
     } catch (error) {
