@@ -60,11 +60,28 @@ sr.reveal('.skills__data, .work__img, .contact__input', { interval: 200 });
 const counter = document.querySelector(".counter-number");
 
 async function updateCounter() {
-    let response = await fetch("https://tzztk47mb3zkerizaarl67ppye0eeqoq.lambda-url.us-east-1.on.aws/");
-    let data = await response.json();
-    counter.innerHTML = `Views: ${data}`;
-  }
+    try {
+        let response = await fetch("https://tzztk47mb3zkerizaarl67ppye0eeqoq.lambda-url.us-east-1.on.aws/");
+        
+        // Check if response is okay
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-updateCounter();
+        let data = await response.json();
+        console.log('API Response:', data); // Log response for debugging
+        
+        // Adjust based on actual response structure
+        counter.innerHTML = `Views: ${data.count || data.views || data.value || 'Unknown'}`;
+    } catch (error) {
+        console.error('Error fetching visitor count:', error);
+        counter.innerHTML = 'Error fetching data';
+    }
+}
+
+// Ensure DOM is fully loaded before running the script
+document.addEventListener('DOMContentLoaded', () => {
+    updateCounter();
+});
 
 
