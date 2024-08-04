@@ -57,18 +57,12 @@ sr.reveal('.home__social-icon', { interval: 200 });
 sr.reveal('.skills__data, .work__img, .contact__input', { interval: 200 });
 
 /*===== FETCH VISITOR COUNT =====*/
-const counterElement = document.getElementById("visitor-count");
+const counter = document.querySelector(".counter-number");
 
 async function updateCounter() {
-  try {
-    let response = await fetch("https://tzztk47mb3zkerizaarl67ppye0eeqoq.lambda-url.us-east-1.on.aws/");
-    if (!response.ok) throw new Error('Network response was not ok');
-    let data = await response.json();
-    counterElement.innerHTML = `Views: ${data.views}`; // Adjust the property name based on your API response
-  } catch (error) {
-    console.error('Fetch error:', error);
-    counterElement.innerHTML = 'Error loading count';
-  }
+  let response = await fetch("https://tzztk47mb3zkerizaarl67ppye0eeqoq.lambda-url.us-east-1.on.aws/");
+  let data = await response.json();
+  counter.innerHTML = `Views: ${data}`;
 }
 
 updateCounter();
