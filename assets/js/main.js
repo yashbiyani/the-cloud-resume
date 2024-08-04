@@ -57,14 +57,12 @@ sr.reveal('.home__social-icon', { interval: 200 });
 sr.reveal('.skills__data, .work__img, .contact__input', { interval: 200 });
 
 /*===== FETCH VISITOR COUNT =====*/
-async function fetchVisitorCount() {
-    try {
-        const response = await fetch('https://0fhb1kbt0i.execute-api.us-east-1.amazonaws.com/VisitorCountFunction');
-        const data = await response.json();
-        document.getElementById('visitor-count').innerText = data.count;
-    } catch (error) {
-        console.error('Error fetching visitor count:', error);
-    }
+const counter = document.querySelector(".counter-number");
+
+async function updateCounter() {
+  let response = await fetch("https://tzztk47mb3zkerizaarl67ppye0eeqoq.lambda-url.us-east-1.on.aws/");
+  let data = await response.json();
+  counter.innerHTML = Views: ${data};
 }
 
-fetchVisitorCount();
+updateCounter();
