@@ -65,9 +65,6 @@ async function updateCounter() {
     console.log(data); // Log the data to check its structure
     counter.innerHTML = `Views: ${data}`;
   }
-  
-
-updateCounter();
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCounter();
