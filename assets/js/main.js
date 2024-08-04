@@ -57,12 +57,24 @@ sr.reveal('.home__social-icon', { interval: 200 });
 sr.reveal('.skills__data, .work__img, .contact__input', { interval: 200 });
 
 /*===== FETCH VISITOR COUNT =====*/
-const counter = document.querySelector(".counter-number");
+const counter = document.querySelector("#visitor-count");
 
 async function updateCounter() {
-  let response = await fetch("https://tzztk47mb3zkerizaarl67ppye0eeqoq.lambda-url.us-east-1.on.aws/");
-  let data = await response.json();
-  counter.innerHTML = Views: ${data};
+  try {
+    console.log("Fetching visitor count...");
+    let response = await fetch("https://tzztk47mb3zkerizaarl67ppye0eeqoq.lambda-url.us-east-1.on.aws/");
+    console.log("Response received:", response);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    let data = await response.json();
+    console.log("Data received:", data);
+    counter.innerHTML = `Views: ${data}`;
+  } catch (error) {
+    console.error("Error fetching visitor count:", error);
+    counter.innerHTML = "Error loading count";
+  }
 }
 
 updateCounter();
+
