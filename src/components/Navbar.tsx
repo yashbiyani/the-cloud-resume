@@ -26,67 +26,66 @@ export default function Navbar() {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Certifications', href: '#certifications' },
     { name: 'Contact', href: '#contact' },
   ];
   
   return (
     <nav className={cn(
-      'fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4',
+      'fixed top-0 left-0 w-full z-50 transition-all duration-500 py-3',
       scrolled ? 'bg-card/80 backdrop-blur-md shadow-md' : 'bg-transparent'
     )}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="#home" className="text-2xl font-bold text-primary">
+        <a href="#home" className="text-xl font-bold text-primary">
           <span className="text-accent">&lt;</span>Yash.<span className="text-accent">dev</span><span className="text-accent">/&gt;</span>
         </a>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6 lg:space-x-8">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <a 
-                href={link.href}
-                className="text-foreground hover:text-accent transition-colors relative group"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        
-        {/* Social Icons and Theme Toggle */}
-        <div className="hidden md:flex items-center space-x-4">
-          <ThemeToggle />
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="GitHub">
-            <Github size={20} />
-          </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
-            <Linkedin size={20} />
-          </a>
-          <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
-            <FileText size={20} />
-          </a>
+        <div className="hidden md:flex items-center space-x-8">
+          <ul className="flex space-x-6">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a 
+                  href={link.href}
+                  className="text-foreground hover:text-accent transition-colors relative group text-sm"
+                >
+                  {link.name}
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          
+          <div className="flex items-center space-x-4">
+            <ThemeToggle />
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="GitHub">
+              <Github size={18} />
+            </a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
+              <Linkedin size={18} />
+            </a>
+            <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
+              <FileText size={18} />
+            </a>
+          </div>
         </div>
         
         {/* Mobile Menu Button */}
-        <div className="flex items-center space-x-4 md:hidden">
+        <div className="flex items-center space-x-2 md:hidden">
           <ThemeToggle />
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="text-foreground hover:text-accent focus:outline-none"
+            className="text-foreground hover:text-accent focus:outline-none p-2"
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
       
       {/* Mobile Menu */}
       <div className={cn(
-        "fixed inset-0 bg-card/95 backdrop-blur-lg flex flex-col justify-center items-center z-50 transition-all duration-300 md:hidden",
+        "fixed inset-0 bg-card/95 backdrop-blur-lg flex flex-col justify-center items-center z-50 transition-all duration-500 md:hidden",
         isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}>
         <button 
@@ -102,7 +101,7 @@ export default function Navbar() {
             <li key={link.name}>
               <a 
                 href={link.href}
-                className="text-xl text-foreground hover:text-accent transition-colors"
+                className="text-lg text-foreground hover:text-accent transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -113,13 +112,13 @@ export default function Navbar() {
         
         <div className="flex items-center space-x-8 mt-12">
           <a href="https://github.com/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="GitHub">
-            <Github size={24} />
+            <Github size={22} />
           </a>
           <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
-            <Linkedin size={24} />
+            <Linkedin size={22} />
           </a>
           <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
-            <FileText size={24} />
+            <FileText size={22} />
           </a>
         </div>
       </div>
