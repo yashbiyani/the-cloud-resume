@@ -1,5 +1,5 @@
 
-import { AtSign, MapPin, Github, Linkedin, Whatsapp } from 'lucide-react';
+import { AtSign, MapPin, Github, Linkedin, MessageSquare } from 'lucide-react';
 
 export default function ContactSection() {
   return (
@@ -92,7 +92,7 @@ export default function ContactSection() {
                     className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
                     aria-label="WhatsApp"
                   >
-                    <Whatsapp size={20} />
+                    <MessageSquare size={20} />
                   </a>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, FileText, Whatsapp } from 'lucide-react';
+import { Menu, X, Github, Linkedin, FileText, MessageSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function Navbar() {
@@ -63,7 +63,7 @@ export default function Navbar() {
               <Linkedin size={18} />
             </a>
             <a href="https://wa.me/+919876543210" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="WhatsApp">
-              <Whatsapp size={18} />
+              <MessageSquare size={18} />
             </a>
             <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
               <FileText size={18} />
@@ -118,7 +118,7 @@ export default function Navbar() {
             <Linkedin size={22} />
           </a>
           <a href="https://wa.me/+919876543210" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="WhatsApp">
-            <Whatsapp size={22} />
+            <MessageSquare size={22} />
           </a>
           <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
             <FileText size={22} />
