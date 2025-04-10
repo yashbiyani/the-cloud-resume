@@ -1,44 +1,7 @@
 
-import { useState } from 'react';
-import { AtSign, MapPin, Send, Github, Linkedin, Check } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { AtSign, MapPin, Github, Linkedin, Whatsapp } from 'lucide-react';
 
 export default function ContactSection() {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message sent successfully!",
-        description: "I'll get back to you as soon as possible.",
-        duration: 5000,
-      });
-      
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-      
-      setIsSubmitting(false);
-    }, 1500);
-  };
-  
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-background to-card/60">
       <div className="container mx-auto px-4">
@@ -52,74 +15,24 @@ export default function ContactSection() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* YouTube Playlist Section */}
           <div className="glass-card rounded-lg p-6 md:p-8 animate-slide-in-left">
-            <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">Your Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                  placeholder="John Doe"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                  placeholder="john@example.com"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-2 bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                  placeholder="Write your message here..."
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-primary text-primary-foreground py-3 rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-70"
-              >
-                {isSubmitting ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} className="mr-2" />
-                    Send Message
-                  </>
-                )}
-              </button>
-            </form>
+            <h3 className="text-2xl font-bold mb-6">My Playlist</h3>
+            <p className="text-muted-foreground mb-6">
+              Take a break and enjoy some music from my personal YouTube playlist while you explore the site.
+            </p>
+            <div className="aspect-video w-full rounded-lg overflow-hidden">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG" 
+                title="Yash's Playlist" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+                className="rounded-lg"
+              ></iframe>
+            </div>
           </div>
           
           {/* Contact Info */}
@@ -172,30 +85,25 @@ export default function ContactSection() {
                   >
                     <Linkedin size={20} />
                   </a>
+                  <a 
+                    href="https://wa.me/+919876543210" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                    aria-label="WhatsApp"
+                  >
+                    <Whatsapp size={20} />
+                  </a>
                 </div>
               </div>
             </div>
             
             <div className="glass-card rounded-lg p-6 md:p-8">
               <h3 className="text-xl font-bold mb-4">Open to Work</h3>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-muted-foreground">
                 I'm currently open to DevOps Engineer, Cloud Engineer, and Site Reliability Engineer roles.
+                Feel free to reach out via WhatsApp or email for any opportunities.
               </p>
-              
-              <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <Check size={18} className="text-devops-green mt-0.5 flex-shrink-0" />
-                  <span className="text-muted-foreground">Remote-friendly positions</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check size={18} className="text-devops-green mt-0.5 flex-shrink-0" />
-                  <span className="text-muted-foreground">Cloud infrastructure focused roles</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check size={18} className="text-devops-green mt-0.5 flex-shrink-0" />
-                  <span className="text-muted-foreground">Kubernetes and container orchestration</span>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

@@ -1,8 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, FileText } from 'lucide-react';
+import { Menu, X, Github, Linkedin, FileText, Whatsapp } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,12 +56,14 @@ export default function Navbar() {
           </ul>
           
           <div className="flex items-center space-x-4">
-            <ThemeToggle />
             <a href="https://github.com/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="GitHub">
               <Github size={18} />
             </a>
             <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
               <Linkedin size={18} />
+            </a>
+            <a href="https://wa.me/+919876543210" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="WhatsApp">
+              <Whatsapp size={18} />
             </a>
             <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
               <FileText size={18} />
@@ -71,8 +72,7 @@ export default function Navbar() {
         </div>
         
         {/* Mobile Menu Button */}
-        <div className="flex items-center space-x-2 md:hidden">
-          <ThemeToggle />
+        <div className="flex items-center md:hidden">
           <button 
             onClick={() => setIsOpen(!isOpen)} 
             className="text-foreground hover:text-accent focus:outline-none p-2"
@@ -116,6 +116,9 @@ export default function Navbar() {
           </a>
           <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
             <Linkedin size={22} />
+          </a>
+          <a href="https://wa.me/+919876543210" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="WhatsApp">
+            <Whatsapp size={22} />
           </a>
           <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
             <FileText size={22} />

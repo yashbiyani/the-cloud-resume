@@ -10,11 +10,8 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CloudParticles from "@/components/CloudParticles";
 import FloatingTechIcons from "@/components/FloatingTechIcons";
-import { useTheme } from "@/components/ThemeProvider";
 
 const Index = () => {
-  const { theme } = useTheme();
-
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">
       {/* Background Effects */}

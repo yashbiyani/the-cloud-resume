@@ -55,7 +55,7 @@ export default function AboutSection() {
           <div className="relative animate-slide-in-right">
             <div className="relative w-full aspect-square overflow-hidden rounded-2xl border-2 border-accent/20">
               <img 
-                src="/lovable-uploads/674c6e35-3c7c-4b9e-9bb5-d74dbc32e88a.png" 
+                src="/lovable-uploads/27debfd6-80da-48e0-a9ff-d7b9248edead.png" 
                 alt="Yash Biyani" 
                 className="object-cover w-full h-full"
               />

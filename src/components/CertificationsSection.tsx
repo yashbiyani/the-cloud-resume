@@ -12,7 +12,7 @@ export default function CertificationsSection() {
       issuer: 'Google',
       date: 'Apr 2024',
       image: '/lovable-uploads/ee270ea6-6e6e-4a86-98ad-24c7e02d9231.png',
-      logo: '/lovable-uploads/ee270ea6-6e6e-4a86-98ad-24c7e02d9231.png'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png'
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ export default function CertificationsSection() {
       issuer: 'Cisco',
       date: 'Aug 2021',
       image: '/lovable-uploads/98b4631a-9851-4d4d-b571-b92f12021673.png',
-      logo: '/lovable-uploads/98b4631a-9851-4d4d-b571-b92f12021673.png'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png'
     },
     {
       id: 5,
@@ -44,7 +44,7 @@ export default function CertificationsSection() {
       issuer: 'Cisco',
       date: 'Jul 2021',
       image: '/lovable-uploads/98b4631a-9851-4d4d-b571-b92f12021673.png',
-      logo: '/lovable-uploads/98b4631a-9851-4d4d-b571-b92f12021673.png'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png'
     },
     {
       id: 6,
@@ -52,7 +52,7 @@ export default function CertificationsSection() {
       issuer: 'HackerRank',
       date: 'Sep 2020',
       image: '/lovable-uploads/1e737bf9-28b7-48f4-9099-c2612b5f70af.png',
-      logo: '/lovable-uploads/1e737bf9-28b7-48f4-9099-c2612b5f70af.png'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/HackerRank_Icon-1000px.png/800px-HackerRank_Icon-1000px.png'
     }
   ];
   
@@ -121,11 +121,11 @@ export default function CertificationsSection() {
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   <div className="bg-card p-4 flex items-center gap-4 border-b border-border">
-                    <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0">
+                    <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-white p-1 flex items-center justify-center">
                       <img 
                         src={cert.logo}
                         alt={cert.issuer}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                     <div>
