@@ -7,6 +7,47 @@
 
 @layer base {
   :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 188 95% 40%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 188 95% 40%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 221 83% 53%;
+  }
+
+  .dark {
     --background: 210 34% 13%;
     --foreground: 210 40% 98%;
 
@@ -34,8 +75,6 @@
     --border: 217 33% 25%;
     --input: 217 33% 25%;
     --ring: 224 76% 48%;
-
-    --radius: 0.5rem;
 
     --sidebar-background: 222 47% 17%;
     --sidebar-foreground: 210 40% 98%;
@@ -88,6 +127,40 @@
     animation: blink 1s step-end infinite;
   }
   
+  .terminal-text {
+    position: relative;
+    display: inline-block;
+    color: var(--terminal-text, theme('colors.primary.DEFAULT'));
+    font-family: 'Fira Code', monospace;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3s steps(30) forwards;
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: currentColor;
+    margin-left: 2px;
+    animation: terminal-blink 1s step-end infinite;
+  }
+
+  .cmd-prompt::before {
+    content: '$ ';
+    color: theme('colors.accent.DEFAULT');
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes terminal-blink {
+    from, to { opacity: 1 }
+    50% { opacity: 0 }
+  }
+  
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -104,6 +177,15 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  @apply bg-background text-foreground antialiased font-code overflow-x-hidden transition-colors duration-300;
+}
+
+/* Theme transition */
+*, *::before, *::after {
+  @apply transition-colors duration-300;
+}
+
 /* Hide scrollbar but allow scrolling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -111,18 +193,48 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  @apply bg-muted/30;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(142, 142, 142, 0.3);
-  border-radius: 4px;
+  @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(142, 142, 142, 0.5);
+/* DevOps Pipeline Animation */
+.pipeline-container {
+  @apply relative overflow-hidden;
 }
 
-body {
-  @apply bg-background text-foreground antialiased font-code overflow-x-hidden;
+.pipeline-dot {
+  @apply absolute h-2 w-2 rounded-full bg-primary;
+  animation: pipeline-flow 3s linear infinite;
+}
+
+@keyframes pipeline-flow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* CI/CD Animation */
+.ci-cd-pipeline {
+  @apply relative flex items-center justify-between;
+}
+
+.ci-cd-step {
+  @apply relative z-10 w-10 h-10 flex items-center justify-center bg-card rounded-full border border-border;
+}
+
+.ci-cd-connector {
+  @apply flex-1 h-0.5 bg-border relative overflow-hidden;
+}
+
+.ci-cd-flow {
+  @apply absolute top-0 left-0 h-full bg-primary;
+  width: 30%;
+  animation: ci-cd-progress 3s infinite linear;
+}
+
+@keyframes ci-cd-progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
 }

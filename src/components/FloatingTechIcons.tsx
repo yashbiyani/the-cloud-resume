@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { Cloud, Server, Database, GitBranch, Code } from 'lucide-react';
+import { Cloud, Server, Database, GitBranch, Code, Cpu, Terminal, Boxes, Workflow, Cog } from 'lucide-react';
 
 interface FloatingIcon {
   id: number;
@@ -8,6 +8,8 @@ interface FloatingIcon {
   left: string;
   top: string;
   animationDelay: string;
+  scale: number;
+  rotation: number;
 }
 
 export default function FloatingTechIcons() {
@@ -16,22 +18,29 @@ export default function FloatingTechIcons() {
   useEffect(() => {
     // Create random icons
     const iconComponents = [
-      <Cloud className="text-tech-aws" />,
-      <Server className="text-tech-kubernetes" />,
-      <Database className="text-tech-docker" />,
-      <GitBranch className="text-devops-blue" />,
-      <Code className="text-devops-green" />,
+      <Cloud className="text-tech-aws dark:text-tech-aws/70" />,
+      <Server className="text-tech-kubernetes dark:text-tech-kubernetes/70" />,
+      <Database className="text-tech-docker dark:text-tech-docker/70" />,
+      <GitBranch className="text-devops-blue dark:text-devops-blue/70" />,
+      <Code className="text-devops-green dark:text-devops-green/70" />,
+      <Terminal className="text-devops-cyan dark:text-devops-cyan/70" />,
+      <Cpu className="text-devops-orange dark:text-devops-orange/70" />,
+      <Boxes className="text-tech-docker dark:text-tech-docker/70" />,
+      <Workflow className="text-devops-blue dark:text-devops-blue/70" />,
+      <Cog className="text-tech-kubernetes dark:text-tech-kubernetes/70" />
     ];
     
     const generatedIcons: FloatingIcon[] = [];
     
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 14; i++) {
       generatedIcons.push({
         id: i,
         icon: iconComponents[i % iconComponents.length],
         left: `${Math.random() * 90}%`,
         top: `${Math.random() * 90}%`,
         animationDelay: `${Math.random() * 5}s`,
+        scale: 0.8 + Math.random() * 0.8, // Scale between 0.8 and 1.6
+        rotation: Math.random() * 360, // Random rotation
       });
     }
     
@@ -43,11 +52,12 @@ export default function FloatingTechIcons() {
       {icons.map((icon) => (
         <div
           key={icon.id}
-          className="absolute w-8 h-8 opacity-10 animate-float"
+          className="absolute w-8 h-8 opacity-10 animate-float transition-all duration-700"
           style={{
             left: icon.left,
             top: icon.top,
             animationDelay: icon.animationDelay,
+            transform: `scale(${icon.scale}) rotate(${icon.rotation}deg)`,
           }}
         >
           {icon.icon}

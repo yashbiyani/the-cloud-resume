@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8">
+        <ul className="hidden md:flex space-x-6 lg:space-x-8">
           {navLinks.map((link) => (
             <li key={link.name}>
               <a 
@@ -56,8 +57,9 @@ export default function Navbar() {
           ))}
         </ul>
         
-        {/* Social Icons */}
+        {/* Social Icons and Theme Toggle */}
         <div className="hidden md:flex items-center space-x-4">
+          <ThemeToggle />
           <a href="https://github.com/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="GitHub">
             <Github size={20} />
           </a>
@@ -70,13 +72,16 @@ export default function Navbar() {
         </div>
         
         {/* Mobile Menu Button */}
-        <button 
-          onClick={() => setIsOpen(!isOpen)} 
-          className="md:hidden text-foreground hover:text-accent focus:outline-none"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center space-x-4 md:hidden">
+          <ThemeToggle />
+          <button 
+            onClick={() => setIsOpen(!isOpen)} 
+            className="text-foreground hover:text-accent focus:outline-none"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
       
       {/* Mobile Menu */}
