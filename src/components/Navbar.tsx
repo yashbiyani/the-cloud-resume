@@ -1,7 +1,9 @@
-
-import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, FileText, WhatsApp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Github, Linkedin, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import dynamicIconImports from 'lucide-react/dynamicIconImports';
+
+const DynamicIcon = React.lazy(() => import('lucide-react/dynamicIconImports/whatsapp'));
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,14 +48,12 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between">
-          {/* Logo */}
           <a href="#home" className="flex items-center gap-2 text-xl font-bold">
             <span className="text-accent">&lt;</span>
             <span className="text-gradient">yash.dev</span>
             <span className="text-accent">/&gt;</span>
           </a>
           
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <ul className="flex items-center gap-6">
               {navLinks.map((link, index) => (
@@ -68,7 +68,6 @@ export default function Navbar() {
               ))}
             </ul>
             
-            {/* Social Links */}
             <div className="flex items-center gap-3">
               <a href="https://github.com/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="GitHub">
                 <Github size={18} />
@@ -76,16 +75,23 @@ export default function Navbar() {
               <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
                 <Linkedin size={18} />
               </a>
-              <a href="https://wa.me/+919876543210" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="WhatsApp">
-                <WhatsApp size={18} />
-              </a>
+              <React.Suspense fallback={<span>WA</span>}>
+                <a 
+                  href="https://wa.me/+919876543210" 
+                  target="_blank" 
+                  rel="noopener" 
+                  className="text-foreground hover:text-accent transition-colors" 
+                  aria-label="WhatsApp"
+                >
+                  <DynamicIcon size={18} />
+                </a>
+              </React.Suspense>
               <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
                 <FileText size={18} />
               </a>
             </div>
           </div>
           
-          {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)} 
             className="md:hidden text-foreground hover:text-accent transition-colors"
@@ -96,7 +102,6 @@ export default function Navbar() {
         </nav>
       </div>
       
-      {/* Mobile Menu */}
       <div 
         className={cn(
           'fixed inset-0 bg-background z-40 transition-transform duration-300 md:hidden pt-20',
@@ -125,9 +130,17 @@ export default function Navbar() {
             <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
               <Linkedin size={22} />
             </a>
-            <a href="https://wa.me/+919876543210" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="WhatsApp">
-              <WhatsApp size={22} />
-            </a>
+            <React.Suspense fallback={<span>WA</span>}>
+              <a 
+                href="https://wa.me/+919876543210" 
+                target="_blank" 
+                rel="noopener" 
+                className="text-foreground hover:text-accent transition-colors" 
+                aria-label="WhatsApp"
+              >
+                <DynamicIcon size={22} />
+              </a>
+            </React.Suspense>
             <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
               <FileText size={22} />
             </a>
