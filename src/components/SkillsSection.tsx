@@ -1,6 +1,5 @@
-
+import { BarChart2, Cloud, Code, GitBranch, Server } from 'lucide-react';
 import { useState } from 'react';
-import { Cloud, Server, Database, GitBranch, Code, BarChart2 } from 'lucide-react';
 
 export default function SkillsSection() {
   const [activeTab, setActiveTab] = useState('cloud');
@@ -15,26 +14,26 @@ export default function SkillsSection() {
     container: [
       { name: 'Docker', level: 95, icon: Server, color: 'text-tech-docker' },
       { name: 'Kubernetes', level: 90, icon: Server, color: 'text-tech-kubernetes' },
+      { name: 'AWS ECS', level: 85, icon: Server, color: 'text-tech-aws' },
       { name: 'Helm', level: 85, icon: Server, color: 'text-accent' },
-      { name: 'EKS', level: 80, icon: Server, color: 'text-tech-aws' },
     ],
     cicd: [
       { name: 'Jenkins', level: 90, icon: GitBranch, color: 'text-tech-jenkins' },
       { name: 'GitHub Actions', level: 85, icon: GitBranch, color: 'text-foreground' },
-      { name: 'GitLab CI', level: 80, icon: GitBranch, color: 'text-devops-orange' },
-      { name: 'ArgoCD', level: 75, icon: GitBranch, color: 'text-devops-cyan' },
+      { name: 'Azure DevOps', level: 85, icon: GitBranch, color: 'text-devops-blue' },
+      { name: 'AWS CodePipeline', level: 80, icon: GitBranch, color: 'text-tech-aws' },
     ],
     programming: [
-      { name: 'Python', level: 85, icon: Code, color: 'text-tech-python' },
-      { name: 'Java', level: 75, icon: Code, color: 'text-devops-orange' },
       { name: 'Bash/Shell', level: 90, icon: Code, color: 'text-devops-green' },
+      { name: 'Java', level: 75, icon: Code, color: 'text-devops-orange' },
+      { name: 'Python', level: 85, icon: Code, color: 'text-tech-python' },
       { name: 'YAML/JSON', level: 95, icon: Code, color: 'text-devops-blue' },
     ],
-    monitoring: [
-      { name: 'Prometheus', level: 85, icon: BarChart2, color: 'text-devops-orange' },
-      { name: 'Grafana', level: 80, icon: BarChart2, color: 'text-devops-green' },
-      { name: 'ELK Stack', level: 75, icon: BarChart2, color: 'text-devops-red' },
-      { name: 'CloudWatch', level: 85, icon: BarChart2, color: 'text-tech-aws' },
+    tools: [
+      { name: 'Jira', level: 90, icon: BarChart2, color: 'text-devops-blue' },
+      { name: 'Confluence', level: 85, icon: BarChart2, color: 'text-devops-blue' },
+      { name: 'SonarQube', level: 80, icon: BarChart2, color: 'text-devops-red' },
+      { name: 'Splunk/Instana', level: 80, icon: BarChart2, color: 'text-devops-cyan' },
     ],
   };
   
@@ -43,7 +42,7 @@ export default function SkillsSection() {
     { id: 'container', label: 'Containers', icon: Server },
     { id: 'cicd', label: 'CI/CD', icon: GitBranch },
     { id: 'programming', label: 'Programming', icon: Code },
-    { id: 'monitoring', label: 'Monitoring', icon: BarChart2 },
+    { id: 'tools', label: 'Tools', icon: BarChart2 },
   ];
   
   return (

@@ -1,9 +1,26 @@
-
-import React from 'react';
-import { AtSign, MapPin, Github, Linkedin, MessageCircle, FileText, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { AtSign, Code2, FileText, Github, Linkedin, MapPin } from 'lucide-react';
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+
+// Add custom WhatsApp icon component
+const WhatsApp = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width={props.size || 24}
+    height={props.size || 24}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.2.301-.767.966-.94 1.164-.173.199-.347.223-.646.075-.3-.15-1.269-.468-2.419-1.491-.893-.8-1.498-1.786-1.674-2.086-.173-.3-.018-.462.13-.61.134-.133.3-.347.45-.52.149-.174.199-.3.3-.498.099-.2.05-.374-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172 0-.371-.025-.571-.025-.2 0-.523.074-.797.359-.273.285-1.045 1.02-1.045 2.488s1.07 2.886 1.219 3.085c.15.2 2.105 3.21 5.1 4.504.714.31 1.27.495 1.705.636.714.227 1.364.195 1.879.118.574-.078 1.767-.721 2.016-1.42.255-.7.255-1.3.18-1.425-.074-.127-.274-.204-.574-.354z" />
+    <path d="M20.52 3.449C12.831-3.086 0 1.633 0 12.14c0 2.125.562 4.214 1.636 6.06L0 24l5.897-1.575c1.785.99 3.799 1.51 5.835 1.51 10.478 0 15.21-12.886 8.787-20.487z" />
+  </svg>
+);
 
 export default function ContactSection() {
   return (
@@ -172,7 +189,7 @@ export default function ContactSection() {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <MessageCircle size={20} />
+                          <WhatsApp size={20} />
                         </motion.a>
                       </TooltipTrigger>
                       <TooltipContent>

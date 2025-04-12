@@ -1,5 +1,4 @@
-
-import { Cloud, Server, Database, GitBranch, Code } from 'lucide-react';
+import { Cloud, Code, Database, GitBranch, Server } from 'lucide-react';
 
 export default function AboutSection() {
   return (
@@ -54,7 +53,7 @@ export default function AboutSection() {
           <div className="relative animate-slide-in-right">
             <div className="relative w-full aspect-square overflow-hidden rounded-2xl border-2 border-accent/20">
               <img 
-                src="/lovable-uploads/27debfd6-80da-48e0-a9ff-d7b9248edead.png" 
+                src="/assets/YB.jpg" 
                 alt="Yash Biyani" 
                 className="object-cover w-full h-full"
               />
@@ -65,7 +64,7 @@ export default function AboutSection() {
             <div className="absolute -bottom-10 -left-10 glass-card p-4 rounded-2xl shadow-xl animate-float">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full bg-devops-blue flex items-center justify-center text-white font-bold">
-                  2+
+                  3+
                 </div>
                 <div>
                   <h4 className="font-semibold text-sm md:text-base">Years of</h4>

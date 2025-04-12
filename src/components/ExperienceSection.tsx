@@ -1,4 +1,3 @@
-
 import { Briefcase, Calendar, ChevronRight } from 'lucide-react';
 
 export default function ExperienceSection() {
@@ -9,16 +8,17 @@ export default function ExperienceSection() {
       company: 'Vodafone',
       location: 'Pune, Maharashtra, India',
       period: 'Aug 2022 - Present',
-      duration: '2 yrs 9 mos',
+      duration: '3 yrs 3 mos',
       description: [
-        'Led the deployment of a two-tier Flask-primarily based Todo software with MySQL backend',
-        'Championed containerization using Docker and Docker Compose',
-        'Automated Kubernetes cluster setup with kubeadm, later transitioning to AWS EKS',
-        'Implemented Helm charts for better deployment management',
-        'Set up multi-node clusters with load balancers for high availability',
-        'Reduced downtime by 60% through improved infrastructure management',
+        'Automated system administration tasks using Bash scripts, reducing manual effort by 50% and improving efficiency.',
+        'Designed and optimized CI/CD pipelines with Jenkins, Azure DevOps, and AWS CodePipeline, cutting deployment time by 70% and ensuring faster, reliable releases.',
+        'Managed containerized workloads with Kubernetes (K8s) and AWS ECS, implementing auto-scaling, efficient resource allocation, and security best practices.',
+        'Led on-call incident management, proactively identifying and resolving critical production issues to ensure 99.9% system uptime.',
+        'Streamlined customer issue resolution via Remedy, reducing SLA breaches and enhancing coordination between developers and stakeholders.',
+        'Optimized cloud infrastructure by refining Docker and Kubernetes deployments, enhancing scalability, deployment speed, and resource utilization.',
+        'Built TOBI Configuration Tool\'s infrastructure with Terraform and led its disaster recovery setup; showcased by tech lead at MWC 2025 and praised by leadership.',
       ],
-      skills: ['Kubernetes', 'GitHub', 'Docker', 'AWS', 'CI/CD', 'Jenkins']
+      skills: ['Kubernetes', 'Docker', 'AWS', 'CI/CD', 'Jenkins', 'Terraform', 'Azure DevOps']
     },
     {
       id: 2,
@@ -70,7 +70,7 @@ export default function ExperienceSection() {
                     style={{ animationDelay: '0.3s' }}
                   >
                     <div className="absolute -top-3 -right-3 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
-                      {index === 0 ? '2+ years' : ''}
+                      {index === 0 ? '3+ years' : ''}
                     </div>
                     
                     <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>

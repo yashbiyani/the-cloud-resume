@@ -1,6 +1,5 @@
-
+import { Code, ExternalLink, Terminal } from 'lucide-react';
 import { useState } from 'react';
-import { ExternalLink, GitBranch, Cloud, Database, Server, Terminal, Code } from 'lucide-react';
 
 export default function ProjectsSection() {
   const [activeProject, setActiveProject] = useState(0);
@@ -10,7 +9,7 @@ export default function ProjectsSection() {
       id: 1,
       title: 'Scaling a Flask Todo App on Kubernetes',
       timeline: 'Nov 2023 - Nov 2023',
-      image: '/lovable-uploads/2ec3e1f6-9c22-4da0-b6ef-c5e86b1738bd.png',
+      image: '/assets/kubernetes-project-header.jpg',
       description: 'Led the deployment of a two-tier Flask-primarily based Todo software with a MySQL backend, designed to efficiently handle 10,000 concurrent customers.',
       tasks: [
         'Championed the containerization of the application using Docker and Docker Compose',
@@ -33,7 +32,7 @@ export default function ProjectsSection() {
       id: 2,
       title: 'Linux for DevOps Series',
       timeline: 'Jan 2024 - Ongoing',
-      image: '/lovable-uploads/12a10b7b-0fe3-48c6-856a-bd5f819c451e.png',
+      image: '/assets/linux-devops-header.jpg',
       description: 'Created a comprehensive tutorial series on Linux fundamentals for DevOps engineers, covering essential commands, user management, and file permissions.',
       tasks: [
         'Developed hands-on exercises for practical learning',
@@ -48,7 +47,7 @@ export default function ProjectsSection() {
       ],
       technologies: ['Linux', 'Bash', 'Shell Scripting', 'DevOps', 'Documentation'],
       links: [
-        { label: 'Medium Blog', url: '#' },
+        { label: 'Medium Blog', url: 'https://medium.com/@yashbiyani' },
       ]
     }
   ];
@@ -75,31 +74,31 @@ export default function ProjectsSection() {
               }`}
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-56 overflow-hidden">
                 <img 
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex items-end">
-                  <div className="p-4 w-full">
-                    <div className="flex flex-wrap gap-2 mb-2">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/60 to-transparent flex items-end">
+                  <div className="p-6 w-full">
+                    <div className="flex flex-wrap gap-2 mb-3">
                       {project.technologies.slice(0, 3).map(tech => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-primary/20 rounded-full text-xs font-medium"
+                          className="px-3 py-1 bg-primary/20 backdrop-blur-sm rounded-full text-xs font-medium"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies.length > 3 && (
-                        <span className="px-2 py-1 bg-secondary/50 rounded-full text-xs font-medium">
+                        <span className="px-3 py-1 bg-secondary/50 backdrop-blur-sm rounded-full text-xs font-medium">
                           +{project.technologies.length - 3}
                         </span>
                       )}
                     </div>
-                    <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
-                    <p className="text-xs text-muted-foreground mt-1">{project.timeline}</p>
+                    <h3 className="text-xl font-bold text-foreground drop-shadow-sm">{project.title}</h3>
+                    <p className="text-xs text-accent mt-1 font-medium">{project.timeline}</p>
                   </div>
                 </div>
               </div>

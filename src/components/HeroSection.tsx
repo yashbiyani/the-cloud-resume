@@ -1,7 +1,5 @@
-
-import { useState, useEffect } from 'react';
-import { ChevronDown, Cloud, Server, Code, GitBranch } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ChevronDown, Cloud, Code, GitBranch, Server } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function HeroSection() {
   const [text, setText] = useState('');
@@ -57,8 +55,10 @@ export default function HeroSection() {
       
       <div className="container px-4 mx-auto text-center z-10">
         <div className="space-y-4 animate-fade-in">
-          <h3 className="text-xl md:text-2xl text-accent">Hello, I'm</h3>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">Yash Biyani</h1>
+          <div className="flex flex-col items-center justify-center">
+            <h3 className="text-xl md:text-2xl text-accent font-medium">Hello, I'm</h3>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mt-2">Yash Biyani</h1>
+          </div>
           <div className="h-16 flex items-center justify-center">
             <h2 className="text-2xl md:text-3xl text-primary inline-block">
               {text}<span className="typing-cursor"></span>
@@ -87,11 +87,11 @@ export default function HeroSection() {
       
       <a 
         href="#about" 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce-slow text-foreground hover:text-accent transition-colors mx-auto"
+        className="absolute bottom-8 left-0 right-0 mx-auto w-[120px] flex flex-col items-center justify-center animate-bounce-slow text-foreground hover:text-accent transition-colors z-10"
         aria-label="Scroll to About section"
       >
-        <span className="text-sm mb-2">Scroll Down</span>
-        <ChevronDown size={24} />
+        <span className="text-sm mb-2 text-center">Scroll Down</span>
+        <ChevronDown size={24} className="mx-auto" />
       </a>
     </section>
   );

@@ -1,15 +1,15 @@
-
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import SkillsSection from "@/components/SkillsSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import ProjectsSection from "@/components/ProjectsSection";
 import CertificationsSection from "@/components/CertificationsSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
 import CloudParticles from "@/components/CloudParticles";
+import ContactSection from "@/components/ContactSection";
+import ExperienceSection from "@/components/ExperienceSection";
 import FloatingTechIcons from "@/components/FloatingTechIcons";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import Navbar from "@/components/Navbar";
+import ProjectsSection from "@/components/ProjectsSection";
+import SkillsSection from "@/components/SkillsSection";
+import VisitorCounter from "@/components/VisitorCounter";
 
 const Index = () => {
   return (
@@ -44,6 +44,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
+      <VisitorCounter />
     </div>
   );
 };

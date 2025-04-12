@@ -1,8 +1,26 @@
-
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, FileText, MessageCircle, Code2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Code2, FileText, Github, Linkedin, Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
+// Add custom WhatsApp icon component
+const WhatsApp = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width={props.size || 24}
+    height={props.size || 24}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.2.301-.767.966-.94 1.164-.173.199-.347.223-.646.075-.3-.15-1.269-.468-2.419-1.491-.893-.8-1.498-1.786-1.674-2.086-.173-.3-.018-.462.13-.61.134-.133.3-.347.45-.52.149-.174.199-.3.3-.498.099-.2.05-.374-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172 0-.371-.025-.571-.025-.2 0-.523.074-.797.359-.273.285-1.045 1.02-1.045 2.488s1.07 2.886 1.219 3.085c.15.2 2.105 3.21 5.1 4.504.714.31 1.27.495 1.705.636.714.227 1.364.195 1.879.118.574-.078 1.767-.721 2.016-1.42.255-.7.255-1.3.18-1.425-.074-.127-.274-.204-.574-.354z" />
+    <path d="M20.52 3.449C12.831-3.086 0 1.633 0 12.14c0 2.125.562 4.214 1.636 6.06L0 24l5.897-1.575c1.785.99 3.799 1.51 5.835 1.51 10.478 0 15.21-12.886 8.787-20.487z" />
+  </svg>
+);
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,7 +81,7 @@ export default function Navbar() {
     { 
       href: '//wa.me/917705094560?text=Hey%20Yash%2C%20I%20saw%20your%20portfolio%2C%20and%20I%27m%20really%20amazed%20by%20it%2C%20is%20it%20a%20good%20time%20to%20talk%3F', 
       label: 'WhatsApp', 
-      icon: MessageCircle,
+      icon: WhatsApp,
       desktopSize: 18,
       mobileSize: 22
     },
@@ -93,7 +111,7 @@ export default function Navbar() {
             transition={{ duration: 0.5 }}
           >
             <span className="text-accent">&lt;</span>
-            <span className="text-gradient">yash.dev</span>
+            <span className="text-gradient">yash.cloud</span>
             <span className="text-accent">/&gt;</span>
           </motion.a>
           
@@ -148,7 +166,7 @@ export default function Navbar() {
           
           <motion.button 
             onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="md:hidden text-foreground hover:text-accent transition-colors p-1 rounded-full"
+            className="md:hidden text-foreground hover:text-accent transition-colors p-1 rounded-full z-50"
             aria-label="Toggle menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -158,9 +176,9 @@ export default function Navbar() {
               {isMenuOpen ? (
                 <motion.div
                   key="close"
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: 90 }}
-                  exit={{ rotate: 0 }}
+                  initial={{ opacity: 0, rotate: 0 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.3 }}
                 >
                   <X size={24} />
@@ -168,9 +186,9 @@ export default function Navbar() {
               ) : (
                 <motion.div
                   key="menu"
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: 0 }}
-                  exit={{ rotate: 90 }}
+                  initial={{ opacity: 0, rotate: 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.3 }}
                 >
                   <Menu size={24} />

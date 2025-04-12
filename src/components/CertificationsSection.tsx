@@ -1,9 +1,8 @@
-
-import { useState } from 'react';
-import { Award, ChevronLeft, ChevronRight, ExternalLink, Certificate } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Award, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
 
 export default function CertificationsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,78 +13,88 @@ export default function CertificationsSection() {
       name: 'Introduction to Generative AI',
       issuer: 'Google',
       date: 'Apr 2024',
-      image: '/lovable-uploads/ee270ea6-6e6e-4a86-98ad-24c7e02d9231.png',
       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png',
-      icon: <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png"
-        alt="Google"
-        className="w-12 h-12 object-contain"
-      />
+      url: 'https://www.cloudskillsboost.google/public_profiles/d060b981-d432-4aa4-9c6e-4277b92cf1d4/badges/8625377'
     },
     {
       id: 2,
       name: 'DevSecOps Foundation',
       issuer: 'VOIS',
       date: 'Jul 2023',
-      image: '/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png',
-      logo: '/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png',
-      icon: <img 
-        src="/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png"
-        alt="VOIS"
-        className="w-12 h-12 object-contain"
-      />
+      logo: '/assets/vois.png',
+      url: 'https://www.credly.com/badges/4c3556e8-aab3-4dbf-a3ba-90cb4d957375/linked_in_profile'
     },
     {
       id: 3,
       name: 'Agile Essentials',
       issuer: 'VOIS',
       date: 'Jan 2023',
-      image: '/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png',
-      logo: '/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png',
-      icon: <img 
-        src="/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png"
-        alt="VOIS"
-        className="w-12 h-12 object-contain"
-      />
+      logo: '/assets/vois.png',
+      url: 'https://www.credly.com/badges/c8b55983-b911-4cb3-a66c-abae5ce9b0f0/linked_in_profile'
     },
     {
       id: 4,
-      name: 'Networking Essentials',
-      issuer: 'Cisco',
-      date: 'Aug 2021',
-      image: '/lovable-uploads/98b4631a-9851-4d4d-b571-b92f12021673.png',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png',
-      icon: <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png"
-        alt="Cisco"
-        className="w-12 h-12 object-contain"
-      />
+      name: 'Verified International Academic Qualifications',
+      issuer: 'World Education Services',
+      date: 'Oct 2023',
+      logo: '/assets/wes_logo.png',
+      url: 'http://credly.com/badges/8f6b33d5-7823-4a51-8e85-ec3efb9acd98/linked_in_profile'
     },
     {
       id: 5,
-      name: 'PCAP: Programming Essentials in Python',
+      name: 'Networking Essentials',
       issuer: 'Cisco',
-      date: 'Jul 2021',
-      image: '/lovable-uploads/98b4631a-9851-4d4d-b571-b92f12021673.png',
+      date: 'Aug 2021',
       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png',
-      icon: <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png"
-        alt="Cisco"
-        className="w-12 h-12 object-contain"
-      />
+      url: 'https://drive.google.com/file/d/172kv_x3nvVl0Dkr_xft5bc-BMwCAZj8E/view'
     },
     {
       id: 6,
-      name: 'Python (Basics)',
+      name: 'CCNAv7: Introduction to Networks',
+      issuer: 'Cisco',
+      date: 'Jul 2021',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png',
+      url: 'https://drive.google.com/file/d/1Q1_3cMSFsTF-qbCC-InT09i25D4nVgQu/view'
+    },
+    {
+      id: 7,
+      name: 'Problem Solving (Basic)',
+      issuer: 'HackerRank',
+      date: 'Oct 2020',
+      logo: '/assets/HR.png',
+      url: 'https://www.hackerrank.com/certificates/54e478a3e523'
+    },
+    {
+      id: 8,
+      name: 'Java (Basic)',
       issuer: 'HackerRank',
       date: 'Sep 2020',
-      image: '/lovable-uploads/1e737bf9-28b7-48f4-9099-c2612b5f70af.png',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/HackerRank_Icon-1000px.png/800px-HackerRank_Icon-1000px.png',
-      icon: <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/HackerRank_Icon-1000px.png/800px-HackerRank_Icon-1000px.png"
-        alt="HackerRank"
-        className="w-12 h-12 object-contain"
-      />
+      logo: '/assets/HR.png',
+      url: 'https://www.hackerrank.com/certificates/e265e01527db'
+    },
+    {
+      id: 9,
+      name: 'Python (Basic)',
+      issuer: 'HackerRank',
+      date: 'Sep 2020',
+      logo: '/assets/HR.png',
+      url: 'https://www.hackerrank.com/certificates/4f8cd316e402'
+    },
+    {
+      id: 10,
+      name: 'Using Python to Interact with the Operating System',
+      issuer: 'Google',
+      date: 'Aug 2020',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png',
+      url: 'https://www.coursera.org/account/accomplishments/verify/THHMMLVAXDWT'
+    },
+    {
+      id: 11,
+      name: 'Programming for Everybody (Getting Started with Python)',
+      issuer: 'University of Michigan',
+      date: 'Apr 2020',
+      logo: '/assets/um_logo.png',
+      url: 'https://www.coursera.org/account/accomplishments/verify/LTLWZXM2QY5W'
     }
   ];
   
@@ -126,7 +135,6 @@ export default function CertificationsSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Certificate size={24} className="text-accent" />
             <h2 className="text-3xl md:text-4xl font-bold inline-block relative">
               <span className="text-accent">&lt;</span> Certifications <span className="text-accent">/&gt;</span>
             </h2>
@@ -186,11 +194,9 @@ export default function CertificationsSection() {
                   >
                     <div className="bg-card p-4 flex items-center gap-4 border-b border-border rounded-t-2xl">
                       <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-white p-1 flex items-center justify-center">
-                        <img 
-                          src={cert.logo}
-                          alt={cert.issuer}
-                          className="w-full h-full object-contain"
-                        />
+                        <div className="p-1 bg-primary/10 rounded-full flex items-center justify-center">
+                          <Award size={20} className="text-primary" />
+                        </div>
                       </div>
                       <div>
                         <h3 className="font-medium line-clamp-1 text-sm sm:text-base">{cert.name}</h3>
@@ -200,7 +206,27 @@ export default function CertificationsSection() {
                     
                     <div className="aspect-[4/3] bg-gradient-to-b from-card to-background flex items-center justify-center p-6">
                       <div className="relative w-24 h-24 flex items-center justify-center">
-                        {cert.icon}
+                        <div className="w-20 h-20 rounded-full overflow-hidden bg-white/95 flex items-center justify-center p-2">
+                          {cert.issuer === 'World Education Services' ? (
+                            <img 
+                              src={cert.logo}
+                              alt={cert.issuer}
+                              className="w-[90%] h-[90%] object-cover"
+                            />
+                          ) : cert.issuer === 'HackerRank' ? (
+                            <img 
+                              src={cert.logo}
+                              alt={cert.issuer}
+                              className="w-[90%] h-[90%] object-contain scale-110"
+                            />
+                          ) : (
+                            <img 
+                              src={cert.logo}
+                              alt={cert.issuer}
+                              className="w-full h-full object-contain"
+                            />
+                          )}
+                        </div>
                         <motion.div 
                           className="absolute inset-0 border-2 border-primary/40 rounded-full"
                           animate={{ 
@@ -221,14 +247,17 @@ export default function CertificationsSection() {
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger asChild>
-                            <motion.button 
+                            <motion.a 
+                              href={cert.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
                               className="text-xs sm:text-sm text-primary flex items-center gap-1 hover:underline"
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                             >
                               Verify
                               <ExternalLink size={14} />
-                            </motion.button>
+                            </motion.a>
                           </TooltipTrigger>
                           <TooltipContent>
                             <p>View certificate verification</p>
@@ -267,10 +296,9 @@ export default function CertificationsSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Award size={24} className="text-primary" />
-            <h3 className="text-xl sm:text-2xl font-bold text-center">
-              Awards & Recognition
-            </h3>
+            <h2 className="text-3xl md:text-4xl font-bold text-center">
+              <span className="text-accent">&lt;</span> Awards & Recognition <span className="text-accent">/&gt;</span>
+            </h2>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
