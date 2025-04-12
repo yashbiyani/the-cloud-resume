@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
-const DynamicIcon = React.lazy(() => import('lucide-react/dynamicIconImports/whatsapp'));
+const DynamicIcon = React.lazy(() => import(`lucide-react/icons/${dynamicIconImports.messageSquare}`));
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

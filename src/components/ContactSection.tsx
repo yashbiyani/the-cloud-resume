@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { AtSign, MapPin, Github, Linkedin } from 'lucide-react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
-const DynamicWhatsAppIcon = React.lazy(() => import('lucide-react/dynamicIconImports/whatsapp'));
+const DynamicWhatsAppIcon = React.lazy(() => import(`lucide-react/icons/${dynamicIconImports.messageSquare}`));
 
 export default function ContactSection() {
   return (
