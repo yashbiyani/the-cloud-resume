@@ -65,10 +65,14 @@ export default function ExperienceSection() {
                 {/* Content */}
                 <div className="w-full md:w-1/2 pl-16 md:pl-0 md:px-12 relative">
                   <div 
-                    className={`glass-card rounded-lg p-6 hover:shadow-xl transition-all duration-300 
+                    className={`glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 
                     ${index % 2 === 0 ? 'md:animate-slide-in-left' : 'md:animate-slide-in-right'}`}
                     style={{ animationDelay: '0.3s' }}
                   >
+                    <div className="absolute -top-3 -right-3 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                      {index === 0 ? '2+ years' : ''}
+                    </div>
+                    
                     <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>
                     <h4 className="text-lg font-medium text-primary">{exp.company}</h4>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">

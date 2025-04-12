@@ -64,7 +64,7 @@ export default function SkillsSection() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all ${
                 activeTab === tab.id 
                   ? 'bg-primary text-primary-foreground shadow-lg' 
                   : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'

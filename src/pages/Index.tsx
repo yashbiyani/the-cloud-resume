@@ -32,6 +32,19 @@ const Index = () => {
         </div>
       </div>
       
+      {/* Floating Badges */}
+      <div className="fixed top-32 left-5 md:left-16 z-10 hidden md:block">
+        <div className="floating-badge animate-bounce-slow">
+          DevOps Engineer
+        </div>
+      </div>
+      
+      <div className="fixed top-56 right-5 md:right-16 z-10 hidden md:block">
+        <div className="floating-badge animate-bounce-slow" style={{ animationDelay: "1.5s" }}>
+          2+ Years Experience
+        </div>
+      </div>
+      
       {/* Main Content */}
       <Navbar />
       <main>

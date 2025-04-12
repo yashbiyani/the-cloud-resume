@@ -181,7 +181,7 @@ export default function CertificationsSection() {
                     whileHover={{ y: -10, transition: { duration: 0.2 } }}
                   >
                     <div className="bg-card p-4 flex items-center gap-4 border-b border-border rounded-t-2xl">
-                      <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-white p-1 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-white p-1 flex items-center justify-center">
                         <img 
                           src={cert.logo}
                           alt={cert.issuer}
@@ -267,7 +267,7 @@ export default function CertificationsSection() {
               whileHover={{ y: -10 }}
             >
               <div className="flex items-start gap-4">
-                <div className="bg-card p-3 rounded-2xl">
+                <div className="bg-card p-3 rounded-full">
                   <Award size={32} className="text-primary" />
                 </div>
                 <div>
@@ -290,7 +290,7 @@ export default function CertificationsSection() {
               whileHover={{ y: -10 }}
             >
               <div className="flex items-start gap-4">
-                <div className="bg-card p-3 rounded-2xl">
+                <div className="bg-card p-3 rounded-full">
                   <Award size={32} className="text-primary" />
                 </div>
                 <div>

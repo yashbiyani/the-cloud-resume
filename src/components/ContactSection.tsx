@@ -3,6 +3,7 @@ import React from 'react';
 import { AtSign, MapPin, Github, Linkedin, MessageCircle, FileText, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 
 export default function ContactSection() {
   return (
@@ -94,52 +95,91 @@ export default function ContactSection() {
               </div>
               
               <div className="mt-8">
-                <h4 className="font-medium mb-4">Connect with me</h4>
-                <div className="flex gap-4">
-                  <motion.a 
-                    href="https://github.com/yashbiyani" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                    aria-label="GitHub Profile"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Github size={20} />
-                  </motion.a>
-                  <motion.a 
-                    href="https://www.linkedin.com/in/yashbiyani/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                    aria-label="LinkedIn Profile"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Linkedin size={20} />
-                  </motion.a>
-                  <motion.a 
-                    href="https://leetcode.com/YashBiyani" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                    aria-label="LeetCode Profile"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Code2 size={20} />
-                  </motion.a>
-                  <motion.a 
-                    href="//wa.me/917705094560?text=Hey%20Yash%2C%20I%20saw%20your%20portfolio%2C%20and%20I%27m%20really%20amazed%20by%20it%2C%20is%20it%20a%20good%20time%20to%20talk%3F" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                    aria-label="WhatsApp"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <MessageCircle size={20} />
-                  </motion.a>
+                <h4 className="font-medium mb-4">Connect & follow me on</h4>
+                <div className="flex gap-4 justify-center md:justify-start">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <motion.a 
+                          href="https://github.com/yashbiyani" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                          aria-label="GitHub Profile"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Github size={20} />
+                        </motion.a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>GitHub</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <motion.a 
+                          href="https://www.linkedin.com/in/yashbiyani/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                          aria-label="LinkedIn Profile"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Linkedin size={20} />
+                        </motion.a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>LinkedIn</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <motion.a 
+                          href="https://leetcode.com/YashBiyani" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                          aria-label="LeetCode Profile"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Code2 size={20} />
+                        </motion.a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>LeetCode</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <motion.a 
+                          href="//wa.me/917705094560?text=Hey%20Yash%2C%20I%20saw%20your%20portfolio%2C%20and%20I%27m%20really%20amazed%20by%20it%2C%20is%20it%20a%20good%20time%20to%20talk%3F" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                          aria-label="WhatsApp"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <MessageCircle size={20} />
+                        </motion.a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>WhatsApp</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
               </div>
             </motion.div>
@@ -162,18 +202,28 @@ export default function ContactSection() {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
                 viewport={{ once: true }}
+                className="flex justify-center md:justify-start"
               >
-                <Button asChild className="rounded-full">
-                  <a 
-                    href="https://drive.google.com/file/d/1-oeqtR0VraTRJXMq4i-XNUuHw1blM5S-/view?usp=sharing" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <FileText size={18} />
-                    View Resume
-                  </a>
-                </Button>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button asChild className="rounded-full">
+                        <a 
+                          href="https://drive.google.com/file/d/1-oeqtR0VraTRJXMq4i-XNUuHw1blM5S-/view?usp=sharing" 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <FileText size={18} />
+                          View Resume
+                        </a>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Download CV</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </motion.div>
             </motion.div>
           </div>

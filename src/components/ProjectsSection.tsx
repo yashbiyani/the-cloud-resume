@@ -70,7 +70,7 @@ export default function ProjectsSection() {
           {projects.map((project, index) => (
             <div 
               key={project.id}
-              className={`glass-card rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl ${
+              className={`glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl ${
                 index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'
               }`}
               style={{ animationDelay: `${index * 0.2}s` }}
@@ -138,7 +138,7 @@ export default function ProjectsSection() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 hover:bg-primary/20 rounded-md text-xs transition-colors"
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 hover:bg-primary/20 rounded-full text-xs transition-colors"
                     >
                       {link.label}
                       <ExternalLink size={12} />
