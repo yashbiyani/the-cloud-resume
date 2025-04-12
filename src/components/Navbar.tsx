@@ -1,10 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, FileText } from 'lucide-react';
+import { Menu, X, Github, Linkedin, FileText, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
-
-const DynamicIcon = React.lazy(() => import(`lucide-react/icons/${dynamicIconImports.messageSquare}`));
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -76,17 +73,15 @@ export default function Navbar() {
               <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
                 <Linkedin size={18} />
               </a>
-              <React.Suspense fallback={<span>WA</span>}>
-                <a 
-                  href="https://wa.me/+919876543210" 
-                  target="_blank" 
-                  rel="noopener" 
-                  className="text-foreground hover:text-accent transition-colors" 
-                  aria-label="WhatsApp"
-                >
-                  <DynamicIcon size={18} />
-                </a>
-              </React.Suspense>
+              <a 
+                href="https://wa.me/+919876543210" 
+                target="_blank" 
+                rel="noopener" 
+                className="text-foreground hover:text-accent transition-colors" 
+                aria-label="WhatsApp"
+              >
+                <MessageCircle size={18} />
+              </a>
               <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
                 <FileText size={18} />
               </a>
@@ -131,17 +126,15 @@ export default function Navbar() {
             <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
               <Linkedin size={22} />
             </a>
-            <React.Suspense fallback={<span>WA</span>}>
-              <a 
-                href="https://wa.me/+919876543210" 
-                target="_blank" 
-                rel="noopener" 
-                className="text-foreground hover:text-accent transition-colors" 
-                aria-label="WhatsApp"
-              >
-                <DynamicIcon size={22} />
-              </a>
-            </React.Suspense>
+            <a 
+              href="https://wa.me/+919876543210" 
+              target="_blank" 
+              rel="noopener" 
+              className="text-foreground hover:text-accent transition-colors" 
+              aria-label="WhatsApp"
+            >
+              <MessageCircle size={22} />
+            </a>
             <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
               <FileText size={22} />
             </a>

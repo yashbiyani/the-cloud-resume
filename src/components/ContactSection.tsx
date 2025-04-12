@@ -1,9 +1,6 @@
 
 import React from 'react';
-import { AtSign, MapPin, Github, Linkedin } from 'lucide-react';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
-
-const DynamicWhatsAppIcon = React.lazy(() => import(`lucide-react/icons/${dynamicIconImports.messageSquare}`));
+import { AtSign, MapPin, Github, Linkedin, MessageCircle } from 'lucide-react';
 
 export default function ContactSection() {
   return (
@@ -89,17 +86,15 @@ export default function ContactSection() {
                   >
                     <Linkedin size={20} />
                   </a>
-                  <React.Suspense fallback={<span>WA</span>}>
-                    <a 
-                      href="https://wa.me/+919876543210" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                      aria-label="WhatsApp"
-                    >
-                      <DynamicWhatsAppIcon size={20} />
-                    </a>
-                  </React.Suspense>
+                  <a 
+                    href="https://wa.me/+919876543210" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                    aria-label="WhatsApp"
+                  >
+                    <MessageCircle size={20} />
+                  </a>
                 </div>
               </div>
             </div>
