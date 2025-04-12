@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronDown, Cloud, Server, Code, GitBranch } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
   const [text, setText] = useState('');
@@ -70,13 +71,13 @@ export default function HeroSection() {
           <div className="pt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
             <a 
               href="#projects" 
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+              className="px-6 py-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors"
             >
               View My Work
             </a>
             <a 
               href="#contact" 
-              className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors"
+              className="px-6 py-3 bg-secondary text-secondary-foreground rounded-full hover:bg-secondary/90 transition-colors"
             >
               Contact Me
             </a>
@@ -86,7 +87,8 @@ export default function HeroSection() {
       
       <a 
         href="#about" 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce-slow text-foreground hover:text-accent transition-colors"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce-slow text-foreground hover:text-accent transition-colors mx-auto"
+        aria-label="Scroll to About section"
       >
         <span className="text-sm mb-2">Scroll Down</span>
         <ChevronDown size={24} />

@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
-import { Award, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { Award, ChevronLeft, ChevronRight, ExternalLink, Certificate } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function CertificationsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -118,17 +119,20 @@ export default function CertificationsSection() {
     <section id="certifications" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
-            className="text-3xl md:text-4xl font-bold inline-block relative"
+          <motion.div 
+            className="flex items-center justify-center mb-3 gap-2"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <span className="text-accent">&lt;</span> Certifications <span className="text-accent">/&gt;</span>
-          </motion.h2>
+            <Certificate size={24} className="text-accent" />
+            <h2 className="text-3xl md:text-4xl font-bold inline-block relative">
+              <span className="text-accent">&lt;</span> Certifications <span className="text-accent">/&gt;</span>
+            </h2>
+          </motion.div>
           <motion.p 
-            className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto"
+            className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto text-sm sm:text-base md:text-lg"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -189,8 +193,8 @@ export default function CertificationsSection() {
                         />
                       </div>
                       <div>
-                        <h3 className="font-medium line-clamp-1">{cert.name}</h3>
-                        <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                        <h3 className="font-medium line-clamp-1 text-sm sm:text-base">{cert.name}</h3>
+                        <p className="text-xs sm:text-sm text-muted-foreground">{cert.issuer}</p>
                       </div>
                     </div>
                     
@@ -213,15 +217,24 @@ export default function CertificationsSection() {
                     </div>
                     
                     <div className="p-4 flex justify-between items-center">
-                      <div className="text-sm text-muted-foreground">Issued {cert.date}</div>
-                      <motion.button 
-                        className="text-sm text-primary flex items-center gap-1 hover:underline"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Verify
-                        <ExternalLink size={14} />
-                      </motion.button>
+                      <div className="text-xs sm:text-sm text-muted-foreground">Issued {cert.date}</div>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <motion.button 
+                              className="text-xs sm:text-sm text-primary flex items-center gap-1 hover:underline"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              Verify
+                              <ExternalLink size={14} />
+                            </motion.button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View certificate verification</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </div>
                   </motion.div>
                 ))}
@@ -247,15 +260,18 @@ export default function CertificationsSection() {
         
         {/* Awards Section */}
         <div className="mt-16">
-          <motion.h3 
-            className="text-2xl font-bold text-center mb-10"
+          <motion.div 
+            className="flex items-center justify-center gap-2 mb-10"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            Awards & Recognition
-          </motion.h3>
+            <Award size={24} className="text-primary" />
+            <h3 className="text-xl sm:text-2xl font-bold text-center">
+              Awards & Recognition
+            </h3>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div 
@@ -268,12 +284,12 @@ export default function CertificationsSection() {
             >
               <div className="flex items-start gap-4">
                 <div className="bg-card p-3 rounded-full">
-                  <Award size={32} className="text-primary" />
+                  <Award size={28} className="text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold">Vodafone Stars Award</h4>
-                  <p className="text-sm text-muted-foreground">May 2024</p>
-                  <p className="mt-3">
+                  <h4 className="text-lg sm:text-xl font-bold">Vodafone Stars Award</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">May 2024</p>
+                  <p className="mt-3 text-xs sm:text-sm md:text-base">
                     Honored to receive the Vodafone Stars Award for effectively managing project responsibilities
                     with dedication and efficiency.
                   </p>
@@ -291,12 +307,12 @@ export default function CertificationsSection() {
             >
               <div className="flex items-start gap-4">
                 <div className="bg-card p-3 rounded-full">
-                  <Award size={32} className="text-primary" />
+                  <Award size={28} className="text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold">Vodafone Stars Award</h4>
-                  <p className="text-sm text-muted-foreground">Mar 2025</p>
-                  <p className="mt-3">
+                  <h4 className="text-lg sm:text-xl font-bold">Vodafone Stars Award</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Mar 2025</p>
+                  <p className="mt-3 text-xs sm:text-sm md:text-base">
                     Thrilled to receive the Vodafone Stars Award for the second time! This recognition highlights
                     my continuous efforts to deliver impactful results as a DevOps Engineer.
                   </p>

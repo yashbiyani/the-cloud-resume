@@ -1,14 +1,25 @@
 
 import * as React from "react"
-import { motion, type HTMLMotionProps } from "framer-motion"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  // Extract framer-motion specific props to prevent them from being passed to the DOM element
-  const { initial, animate, exit, transition, whileHover, whileInView, viewport, ...restProps } = props as any;
+  // We need to filter out framer-motion specific props
+  const {
+    initial,
+    animate,
+    exit,
+    transition,
+    whileHover,
+    whileTap,
+    whileInView,
+    viewport,
+    variants,
+    ...restProps
+  } = props as any;
   
   return (
     <motion.div

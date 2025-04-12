@@ -44,6 +44,8 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
+    
+    // Handle the motion animation separately to avoid TypeScript errors
     return (
       <motion.div
         whileHover={{ scale: 1.02 }}
