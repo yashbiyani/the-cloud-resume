@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { 
   Cloud, Server, Database, GitBranch, Code, Cpu, Terminal, Boxes, 
-  Workflow, Cog, Docker, Kubernetes, Package, AlertCircle, ChevronRight
+  Workflow, Cog, ChevronRight, AlertCircle, Package
 } from 'lucide-react';
 
 interface FloatingIcon {

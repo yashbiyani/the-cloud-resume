@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, FileText, MessageSquare } from 'lucide-react';
+import { Menu, X, Github, Linkedin, FileText, WhatsApp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function Navbar() {
@@ -29,7 +29,7 @@ export default function Navbar() {
     { href: '#skills', label: 'Skills' },
     { href: '#experience', label: 'Experience' },
     { href: '#projects', label: 'Projects' },
-    { href: '#certifications', label: 'Certifications' },
+    { href: '#certifications', label: 'Certs' },
     { href: '#contact', label: 'Contact' }
   ];
   
@@ -49,7 +49,7 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2 text-xl font-bold">
             <span className="text-accent">&lt;</span>
-            <span className="text-gradient">Yash</span>
+            <span className="text-gradient">yash.dev</span>
             <span className="text-accent">/&gt;</span>
           </a>
           
@@ -77,7 +77,7 @@ export default function Navbar() {
                 <Linkedin size={18} />
               </a>
               <a href="https://wa.me/+919876543210" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="WhatsApp">
-                <MessageSquare size={18} />
+                <WhatsApp size={18} />
               </a>
               <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
                 <FileText size={18} />
@@ -126,7 +126,7 @@ export default function Navbar() {
               <Linkedin size={22} />
             </a>
             <a href="https://wa.me/+919876543210" target="_blank" rel="noopener" className="text-foreground hover:text-accent transition-colors" aria-label="WhatsApp">
-              <MessageSquare size={22} />
+              <WhatsApp size={22} />
             </a>
             <a href="#" className="text-foreground hover:text-accent transition-colors" aria-label="Resume">
               <FileText size={22} />
