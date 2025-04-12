@@ -24,8 +24,7 @@ export default function ProjectsSection() {
       ],
       technologies: ['Kubernetes', 'Docker', 'AWS EKS', 'Helm', 'MySQL', 'Flask'],
       links: [
-        { label: 'Project Demo', url: '#' },
-        { label: 'GitHub', url: '#' },
+        { label: 'GitHub', url: 'https://github.com/yashbiyani/two-tier-flask-app' },
       ]
     },
     {
