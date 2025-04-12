@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -17,7 +16,7 @@ const Card = React.forwardRef<
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
     viewport={{ once: true }}
-    whileHover={{ y: -5 }}
+    animate={{ y: 0 }}
     {...props}
   />
 ))
