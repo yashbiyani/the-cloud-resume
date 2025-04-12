@@ -18,14 +18,13 @@ export default function AboutSection() {
             </p>
             
             <p className="text-lg text-muted-foreground">
-              I graduated with a Bachelor of Technology in Computer Science from Medicaps University in August 2022, where I
-              learned the fundamentals of programming, web app architecture, and software development life cycle. I also completed
-              multiple online courses on Python, which enhanced my scripting and automation abilities.
+              I graduated with a Bachelor of Technology in Computer Science from Medicaps University in 2022, and have since
+              enhanced my automation capabilities through specialized Python courses.
             </p>
             
             <p className="text-lg text-muted-foreground">
-              I am passionate about learning new technologies and applying them to solve real-world problems. I am eager to collaborate
-              with other DevOps enthusiasts and elevate organizations' DevOps initiatives.
+              My passion lies in applying new technologies to solve real-world problems and collaborating with other DevOps
+              enthusiasts to elevate organizational initiatives.
             </p>
             
             <div className="flex flex-wrap gap-4 pt-4">

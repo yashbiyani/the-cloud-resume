@@ -1,6 +1,9 @@
 
 import { useEffect, useState } from 'react';
-import { Cloud, Server, Database, GitBranch, Code, Cpu, Terminal, Boxes, Workflow, Cog } from 'lucide-react';
+import { 
+  Cloud, Server, Database, GitBranch, Code, Cpu, Terminal, Boxes, 
+  Workflow, Cog, Docker, Kubernetes, Package, AlertCircle, ChevronRight
+} from 'lucide-react';
 
 interface FloatingIcon {
   id: number;
@@ -27,12 +30,15 @@ export default function FloatingTechIcons() {
       <Cpu className="text-devops-orange dark:text-devops-orange/70" />,
       <Boxes className="text-tech-docker dark:text-tech-docker/70" />,
       <Workflow className="text-devops-blue dark:text-devops-blue/70" />,
-      <Cog className="text-tech-kubernetes dark:text-tech-kubernetes/70" />
+      <Cog className="text-tech-kubernetes dark:text-tech-kubernetes/70" />,
+      <ChevronRight className="text-devops-orange dark:text-devops-orange/70" />, // Jenkins icon alternative
+      <AlertCircle className="text-devops-red dark:text-devops-red/70" />, // Prometheus icon alternative
+      <Package className="text-tech-terraform dark:text-tech-terraform/70" /> // Terraform icon alternative
     ];
     
     const generatedIcons: FloatingIcon[] = [];
     
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 20; i++) {
       generatedIcons.push({
         id: i,
         icon: iconComponents[i % iconComponents.length],

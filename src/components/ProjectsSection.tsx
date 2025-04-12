@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { ExternalLink, GitBranch, Cloud, Database, Server } from 'lucide-react';
+import { ExternalLink, GitBranch, Cloud, Database, Server, Terminal, Code } from 'lucide-react';
 
 export default function ProjectsSection() {
   const [activeProject, setActiveProject] = useState(0);
@@ -56,118 +56,98 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 bg-gradient-to-b from-card/60 to-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold inline-block relative">
             <span className="text-accent">&lt;</span> Projects <span className="text-accent">/&gt;</span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-            Highlighting key projects that demonstrate my expertise in DevOps, cloud infrastructure, and container orchestration.
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Key projects showcasing my DevOps expertise
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Project Tabs */}
-          <div className="space-y-4">
-            {projects.map((project, index) => (
-              <button
-                key={project.id}
-                onClick={() => setActiveProject(index)}
-                className={`w-full text-left p-4 rounded-lg transition-all ${
-                  activeProject === index
-                    ? 'glass-card border-l-4 border-l-primary'
-                    : 'bg-secondary/50 hover:bg-secondary'
-                }`}
-              >
-                <h3 className={`text-xl font-medium ${activeProject === index ? 'text-primary' : 'text-foreground'}`}>
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1">{project.timeline}</p>
-              </button>
-            ))}
-          </div>
-          
-          {/* Active Project Details */}
-          <div className="relative">
-            <div className="glass-card rounded-lg overflow-hidden animate-fade-in">
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={projects[activeProject].image}
-                  alt={projects[activeProject].title}
+        {/* Compact Project Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.map((project, index) => (
+            <div 
+              key={project.id}
+              className={`glass-card rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl ${
+                index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'
+              }`}
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={project.image}
+                  alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex items-end">
+                  <div className="p-4 w-full">
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {project.technologies.slice(0, 3).map(tech => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 bg-primary/20 rounded-full text-xs font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="px-2 py-1 bg-secondary/50 rounded-full text-xs font-medium">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{project.timeline}</p>
+                  </div>
+                </div>
               </div>
               
-              <div className="p-6">
-                <h3 className="text-2xl font-bold">{projects[activeProject].title}</h3>
-                <p className="text-muted-foreground mt-2">{projects[activeProject].description}</p>
+              <div className="p-4">
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                  {project.description}
+                </p>
                 
-                <div className="mt-4">
-                  <h4 className="text-lg font-medium flex items-center gap-2">
-                    <Server size={18} className="text-devops-blue" />
-                    Key Tasks
-                  </h4>
-                  <ul className="mt-2 space-y-1">
-                    {projects[activeProject].tasks.map((task, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="text-accent">▹</span>
-                        <span>{task}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-start gap-2">
+                    <div className="mt-1">
+                      <Terminal size={16} className="text-devops-cyan" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium">Key Achievement</h4>
+                      <p className="text-xs text-muted-foreground">{project.results[0]}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <div className="mt-1">
+                      <Code size={16} className="text-devops-green" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium">Core Technology</h4>
+                      <p className="text-xs text-muted-foreground">{project.technologies[0]}, {project.technologies[1]}</p>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="mt-4">
-                  <h4 className="text-lg font-medium flex items-center gap-2">
-                    <Database size={18} className="text-devops-green" />
-                    Results
-                  </h4>
-                  <ul className="mt-2 space-y-1">
-                    {projects[activeProject].results.map((result, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="text-accent">▹</span>
-                        <span>{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {projects[activeProject].technologies.map(tech => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-secondary rounded-full text-xs font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {projects[activeProject].links.map(link => (
+                <div className="flex justify-end mt-4 gap-2">
+                  {project.links.map(link => (
                     <a
                       key={link.label}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm hover:bg-primary/90 transition-colors"
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 hover:bg-primary/20 rounded-md text-xs transition-colors"
                     >
                       {link.label}
-                      <ExternalLink size={14} />
+                      <ExternalLink size={12} />
                     </a>
                   ))}
                 </div>
               </div>
             </div>
-            
-            {/* Floating elements */}
-            <div className="absolute -top-5 -left-5 p-3 glass-card rounded-full animate-float hidden md:block">
-              <Cloud size={24} className="text-tech-kubernetes" />
-            </div>
-            <div className="absolute -bottom-5 -right-5 p-3 glass-card rounded-full animate-float hidden md:block" style={{ animationDelay: "1.5s" }}>
-              <GitBranch size={24} className="text-devops-cyan" />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -25,7 +25,7 @@ export default function ContactSection() {
               <iframe 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG" 
+                src="https://www.youtube.com/embed/videoseries?list=PL3GtQHnAfaZoSFs2JyEJeN-zJRk1lRRmt" 
                 title="Yash's Playlist" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

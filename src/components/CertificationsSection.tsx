@@ -19,16 +19,16 @@ export default function CertificationsSection() {
       name: 'DevSecOps Foundation',
       issuer: 'VOIS',
       date: 'Jul 2023',
-      image: '/lovable-uploads/5aae346e-71d9-4fa3-9d98-cbf7c1754ac2.png',
-      logo: '/lovable-uploads/5aae346e-71d9-4fa3-9d98-cbf7c1754ac2.png'
+      image: '/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png',
+      logo: '/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png'
     },
     {
       id: 3,
       name: 'Agile Essentials',
       issuer: 'VOIS',
       date: 'Jan 2023',
-      image: '/lovable-uploads/5aae346e-71d9-4fa3-9d98-cbf7c1754ac2.png',
-      logo: '/lovable-uploads/5aae346e-71d9-4fa3-9d98-cbf7c1754ac2.png'
+      image: '/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png',
+      logo: '/lovable-uploads/d9e440ed-480f-463a-9360-99e3391f73c0.png'
     },
     {
       id: 4,
@@ -64,21 +64,22 @@ export default function CertificationsSection() {
     
     // For desktop, show 3 certificates at a time
     const start = currentIndex;
-    const end = (start + 3) % certifications.length;
-    if (end > start) {
-      return certifications.slice(start, end);
-    } else {
-      // Handle wraparound
-      return [...certifications.slice(start), ...certifications.slice(0, end)];
-    }
+    const end = Math.min(start + 3, certifications.length);
+    return certifications.slice(start, end);
   };
   
   const nextCert = () => {
-    setCurrentIndex((prev) => (prev + 1) % certifications.length);
+    setCurrentIndex((prev) => {
+      const next = prev + 1;
+      return next >= certifications.length - 2 ? 0 : next;
+    });
   };
   
   const prevCert = () => {
-    setCurrentIndex((prev) => (prev - 1 + certifications.length) % certifications.length);
+    setCurrentIndex((prev) => {
+      const next = prev - 1;
+      return next < 0 ? certifications.length - 3 : next;
+    });
   };
   
   return (
@@ -182,8 +183,7 @@ export default function CertificationsSection() {
                   <p className="text-sm text-muted-foreground">May 2024</p>
                   <p className="mt-3">
                     Honored to receive the Vodafone Stars Award for effectively managing project responsibilities
-                    with dedication and efficiency. This recognition reflects my commitment to Vodafone's core values
-                    and ability to deliver results promptly.
+                    with dedication and efficiency.
                   </p>
                 </div>
               </div>
@@ -199,8 +199,7 @@ export default function CertificationsSection() {
                   <p className="text-sm text-muted-foreground">Mar 2025</p>
                   <p className="mt-3">
                     Thrilled to receive the Vodafone Stars Award for the second time! This recognition highlights
-                    my continuous efforts to deliver impactful results as a DevOps Engineer while following best
-                    practices and ensuring seamless project execution.
+                    my continuous efforts to deliver impactful results as a DevOps Engineer.
                   </p>
                 </div>
               </div>
