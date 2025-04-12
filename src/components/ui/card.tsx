@@ -16,7 +16,6 @@ const Card = React.forwardRef<
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
     viewport={{ once: true }}
-    animate={{ y: 0 }}
     {...props}
   />
 ))

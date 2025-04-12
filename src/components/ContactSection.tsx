@@ -163,7 +163,7 @@ export default function ContactSection() {
                 transition={{ delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <Button asChild className="rounded-full" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button asChild className="rounded-full">
                   <a 
                     href="https://drive.google.com/file/d/1-oeqtR0VraTRJXMq4i-XNUuHw1blM5S-/view?usp=sharing" 
                     target="_blank"
