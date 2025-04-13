@@ -10,7 +10,7 @@
 
 This repository contains my implementation of the [AWS Cloud Resume Challenge](https://cloudresumechallenge.dev/), a hands-on project designed to help showcase cloud skills. My portfolio is built with modern frontend technologies and deployed using a robust cloud architecture on AWS, demonstrating my skills in both web development and cloud infrastructure.
 
-Visit my portfolio: [yash.dev](https://yash.dev)
+Visit my portfolio: [yash.dev](https://yashbiyani.com)
 
 ## 📋 Features
 
@@ -22,29 +22,49 @@ Visit my portfolio: [yash.dev](https://yash.dev)
 
 ## 🏗️ Architecture
 
-This project implements a serverless architecture on AWS:
+This project implements a serverless architecture on AWS following the Cloud Resume Challenge requirements:
 
 ```
-                      +------------+
-                      |  Route 53  |
-                      +------------+
-                            |
-                            v
-                      +------------+
-                      | CloudFront |
-                      +------------+
-                            |
-                            v
-                      +------------+
-                      |     S3     |
-                      +------------+
-                            |
-                            v
-+------------+        +------------+        +------------+
-|    API     |------->|   Lambda   |------->|  DynamoDB  |
-| Gateway    |        | Function   |        |            |
-+------------+        +------------+        +------------+
+                      +-------------------+
+                      |    Route 53       |
+                      | (DNS Management)  |
+                      +-------------------+
+                              |
+                              | Custom Domain
+                              v
+                      +-------------------+
+                      |  CloudFront       |
+                      | (CDN with HTTPS)  |
+                      +-------------------+
+                              |
+                              | Static Content Delivery
+                              v
+                      +-------------------+
+                      |       S3          |
+                      | (Website Hosting) |
+                      +-------------------+
+                              |
+                              | API Calls
+                              v
+  +-------------------+  +-------------------+  +-------------------+
+  |    API Gateway    |->|  Lambda Function  |->|     DynamoDB      |
+  | (REST Endpoints)  |  | (Visitor Counter) |  | (Data Persistence)|
+  +-------------------+  +-------------------+  +-------------------+
+           ^                                            |
+           |                                            |
+           +--------------------------------------------+
+                          Response Data
 ```
+
+The Cloud Resume Challenge pushes you beyond typical frontend development into cloud operations:
+
+1. **Frontend (S3)**: Static resume website built with React, TypeScript, and Tailwind CSS
+2. **Content Delivery (CloudFront)**: Global distribution with HTTPS security
+3. **Domain Management (Route 53)**: Custom domain configuration and DNS management
+4. **Backend (Lambda & DynamoDB)**: Serverless visitor counter function with database persistence
+5. **API Layer (API Gateway)**: Secure REST endpoints for frontend-backend communication
+6. **DevOps (GitHub Actions)**: CI/CD pipeline for automated testing and deployment
+7. **Infrastructure as Code**: AWS resources defined and managed through code
 
 ## 🛠️ Technologies Used
 
@@ -116,8 +136,8 @@ This project uses GitHub Actions for continuous integration and continuous deplo
 
 ```bash
 # Clone the repository
-git clone https://github.com/yashbiyani/cloud-canvas-motion-folio.git
-cd cloud-canvas-motion-folio
+git clone https://github.com/yashbiyani/the-cloud-resume.git
+cd the-cloud-resume
 
 # Install dependencies
 npm install
