@@ -37,10 +37,18 @@ export default function Navbar() {
     
     window.addEventListener('scroll', handleScroll);
     
+    // Prevent body scrolling when menu is open
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.body.style.overflow = '';
     };
-  }, []);
+  }, [isMenuOpen]);
   
   const navLinks = [
     { href: '#home', label: 'Home' },
@@ -52,8 +60,35 @@ export default function Navbar() {
     { href: '#contact', label: 'Contact' }
   ];
   
-  const closeMenu = () => {
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    
+    // Close the menu first
     setIsMenuOpen(false);
+    
+    // Navigate after a small delay to allow menu to close
+    setTimeout(() => {
+      if (href.startsWith('#')) {
+        try {
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            // Enhanced smooth scrolling with easing
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.scrollY - 80;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        } catch (error) {
+          console.error("Error scrolling to section:", error);
+          window.location.href = "/" + href;
+        }
+      } else {
+        window.location.href = href;
+      }
+    }, 250);
   };
   
   const socialLinks = [
@@ -97,7 +132,7 @@ export default function Navbar() {
   return (
     <header 
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-500',
+        'fixed top-0 left-0 w-full z-[100] transition-all duration-700',
         scrolled ? 'py-2 bg-background/90 backdrop-blur-lg shadow-md' : 'py-4 bg-transparent'
       )}
     >
@@ -108,10 +143,10 @@ export default function Navbar() {
             className="flex items-center gap-2 text-xl font-bold"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <span className="text-accent">&lt;</span>
-            <span className="text-gradient">yash.cloud</span>
+            <span className="text-gradient">yash.dev</span>
             <span className="text-accent">/&gt;</span>
           </motion.a>
           
@@ -119,7 +154,7 @@ export default function Navbar() {
             className="hidden md:flex items-center justify-center flex-1"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           >
             <ul className="flex items-center justify-center gap-6">
               {navLinks.map((link, index) => (
@@ -127,11 +162,12 @@ export default function Navbar() {
                   key={index}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 * index }}
+                  transition={{ duration: 0.4, ease: "easeOut", delay: 0.05 * index }}
                 >
                   <a 
                     href={link.href} 
-                    className="text-foreground hover:text-accent transition-colors py-1 border-b-2 border-transparent hover:border-accent text-base"
+                    className="text-foreground hover:text-accent transition-colors duration-300 py-1 border-b-2 border-transparent hover:border-accent text-base"
+                    onClick={(e) => handleNavClick(e, link.href)}
                   >
                     {link.label}
                   </a>
@@ -144,7 +180,7 @@ export default function Navbar() {
             className="hidden md:flex items-center gap-4"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             {socialLinks.map((link, index) => (
               <motion.a 
@@ -156,8 +192,8 @@ export default function Navbar() {
                 aria-label={link.label}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 * index }}
-                whileHover={{ scale: 1.2 }}
+                transition={{ duration: 0.3, delay: 0.1 * index, ease: "easeOut" }}
+                whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
               >
                 <link.icon size={link.desktopSize} />
               </motion.a>
@@ -166,100 +202,87 @@ export default function Navbar() {
           
           <motion.button 
             onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="md:hidden text-foreground hover:text-accent transition-colors p-1 rounded-full z-50"
+            className="md:hidden text-foreground hover:text-accent transition-colors duration-300 p-1 rounded-full z-[150]"
             aria-label="Toggle menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
           >
-            <AnimatePresence mode="wait">
-              {isMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ opacity: 0, rotate: 0 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <X size={24} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ opacity: 0, rotate: 90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Menu size={24} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
         </nav>
       </div>
       
-      <AnimatePresence>
+      {/* Mobile menu */}
+      <AnimatePresence mode="wait">
         {isMenuOpen && (
           <motion.div 
-            className="fixed inset-0 bg-background/95 z-40 flex flex-col items-center justify-center md:hidden"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
+            className="fixed top-0 left-0 w-screen h-screen bg-background/95 backdrop-blur-lg z-[140] flex flex-col items-center justify-center md:hidden overflow-y-auto"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            style={{ height: '100vh', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
           >
-            <motion.ul 
-              className="flex flex-col items-center gap-6 text-center mb-12"
+            <motion.div
+              className="flex flex-col items-center justify-center h-full w-full py-16"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
-              {navLinks.map((link, index) => (
-                <motion.li 
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { delay: 0.1 * index, duration: 0.5 }
-                  }}
-                >
-                  <a 
-                    href={link.href} 
-                    className="block text-2xl font-medium py-2 hover:text-accent transition-colors"
-                    onClick={closeMenu}
+              <motion.ul 
+                className="flex flex-col items-center justify-center gap-6 text-center mb-12 w-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
+                {navLinks.map((link, index) => (
+                  <motion.li 
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { delay: 0.08 * index, duration: 0.5, ease: "easeOut" }
+                    }}
                   >
-                    {link.label}
-                  </a>
-                </motion.li>
-              ))}
-            </motion.ul>
-            
-            <motion.div 
-              className="flex gap-6 justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              {socialLinks.map((link, index) => (
-                <motion.a 
-                  key={index}
-                  href={link.href} 
-                  target="_blank" 
-                  rel="noopener" 
-                  className="text-foreground hover:text-accent transition-colors" 
-                  aria-label={link.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ 
-                    opacity: 1, 
-                    scale: 1,
-                    transition: { delay: 0.3 + (0.1 * index), duration: 0.3 }
-                  }}
-                  whileHover={{ scale: 1.2 }}
-                >
-                  <link.icon size={link.mobileSize} />
-                </motion.a>
-              ))}
+                    <a 
+                      href={link.href} 
+                      className="block text-2xl font-medium py-2 hover:text-accent transition-colors duration-300"
+                      onClick={(e) => handleNavClick(e, link.href)}
+                    >
+                      {link.label}
+                    </a>
+                  </motion.li>
+                ))}
+              </motion.ul>
+              
+              <motion.div 
+                className="flex gap-6 justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+              >
+                {socialLinks.map((link, index) => (
+                  <motion.a 
+                    key={index}
+                    href={link.href} 
+                    target="_blank" 
+                    rel="noopener" 
+                    className="text-foreground hover:text-accent transition-colors" 
+                    aria-label={link.label}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ 
+                      opacity: 1, 
+                      scale: 1,
+                      transition: { delay: 0.25 + (0.08 * index), duration: 0.3, ease: "easeOut" }
+                    }}
+                    whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
+                  >
+                    <link.icon size={link.mobileSize} />
+                  </motion.a>
+                ))}
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
