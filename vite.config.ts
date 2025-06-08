@@ -1,28 +1,32 @@
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 
-export default defineConfig(({ mode }) => ({
-  server: {
-    host: "::",
-    port: 8080,
-    proxy: {
-      '/api': {
-        target: 'https://sharing-rooster-20286.upstash.io',
-        changeOrigin: true,
-        secure: true,
-        headers: {
-          'Authorization': 'Bearer AU8-AAIjcDE2ZWFmMTIxZDNjN2M0OGRiOTIzOGUzOGUxMmNmNTc3YXAxMA'
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+  
+  return {
+    server: {
+      host: "::",
+      port: 8080,
+      proxy: {
+        '/api': {
+          target: env.VITE_UPSTASH_REDIS_REST_URL,
+          changeOrigin: true,
+          secure: true,
+          headers: {
+            'Authorization': `Bearer ${env.VITE_UPSTASH_REDIS_REST_TOKEN}`
+          },
         },
       },
     },
-  },
-  plugins: [
-    react(),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+    plugins: [
+      react(),
+    ],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
     },
-  },
-}));
+  }
+});
