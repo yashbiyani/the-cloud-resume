@@ -1,10 +1,10 @@
 import { useToast } from "@/components/ui/use-toast";
-import { incrementVisitorCount } from '@/services/visitorService';
+import { getVisitorCount } from '@/services/visitorService';
 import { motion } from 'framer-motion';
 import { Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-export default function VisitorCounter() {
+export const VisitorCounter = () => {
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
@@ -14,9 +14,9 @@ export default function VisitorCounter() {
     const fetchVisitorCount = async () => {
       if (hasRun.current) return;
       hasRun.current = true;
-      
+
       try {
-        const response = await incrementVisitorCount();
+        const response = await getVisitorCount();
         if (response.success) {
           setVisitorCount(response.count);
         } else {
@@ -26,7 +26,7 @@ export default function VisitorCounter() {
         console.error('Error fetching visitor count:', err);
         setError('Error loading visitor count');
         toast({
-          title: "Couldn't update visitor count",
+          title: "Couldn't fetch visitor count",
           description: "We'll still show you around!",
           variant: "destructive",
         });
@@ -49,4 +49,4 @@ export default function VisitorCounter() {
       </span>
     </motion.div>
   );
-}
+};

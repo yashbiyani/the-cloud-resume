@@ -9,7 +9,7 @@ import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
-import VisitorCounter from "@/components/VisitorCounter";
+import { VisitorCounter } from "@/components/VisitorCounter";
 
 const Index = () => {
   return (

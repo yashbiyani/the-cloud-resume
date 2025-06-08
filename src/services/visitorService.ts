@@ -10,7 +10,6 @@
  * - The Lambda function should both increment the counter and return the new count
  */
 
-const API_ENDPOINT = 'https://www.yashbiyani.space/';
 
 interface VisitorResponse {
   success: boolean;
@@ -18,43 +17,67 @@ interface VisitorResponse {
   message?: string;
 }
 
-const LOCAL_STORAGE_KEY = 'visitorCount';
-const SESSION_KEY = 'visitSession';
+const INITIAL_COUNT = 1200;
 
-/**
- * Increments the visitor counter and returns the updated count
- * @param page The page identifier to track (optional)
- */
-export const incrementVisitorCount = async (page: string = 'home'): Promise<VisitorResponse> => {
+export const getVisitorCount = async (): Promise<VisitorResponse> => {
+  const UPSTASH_URL = import.meta.env.VITE_UPSTASH_REDIS_REST_URL;
+  const UPSTASH_TOKEN = import.meta.env.VITE_UPSTASH_REDIS_REST_TOKEN;
+
+  if (!UPSTASH_URL || !UPSTASH_TOKEN) {
+    console.error('Missing Redis credentials');
+    return {
+      success: false,
+      message: 'Configuration error'
+    };
+  }
+
   try {
-    // Initialize count if it doesn't exist
-    if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, '0');
+    // First, check if we need to initialize the counter
+    const currentCount = await fetch(`${UPSTASH_URL}/get/visitor_count`, {
+      headers: {
+        'Authorization': `Bearer ${UPSTASH_TOKEN}`,
+        'Accept': 'application/json',
+      }
+    });
+
+    const countData = await currentCount.json();
+    
+    // If count doesn't exist or is less than INITIAL_COUNT, set it to INITIAL_COUNT
+    if (!countData.result || countData.result < INITIAL_COUNT) {
+      const setResponse = await fetch(`${UPSTASH_URL}/set/visitor_count/${INITIAL_COUNT}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${UPSTASH_TOKEN}`,
+          'Accept': 'application/json',
+        }
+      });
+
+      if (!setResponse.ok) {
+        throw new Error('Failed to initialize visitor count');
+      }
     }
 
-    // Check if we've counted this session
-    const sessionId = sessionStorage.getItem(SESSION_KEY);
-    if (!sessionId) {
-      // New session - increment count
-      const currentCount = parseInt(localStorage.getItem(LOCAL_STORAGE_KEY) || '0');
-      const newCount = currentCount + 1;
-      localStorage.setItem(LOCAL_STORAGE_KEY, newCount.toString());
-      sessionStorage.setItem(SESSION_KEY, Date.now().toString());
+    // Now increment the count
+    const incrementResponse = await fetch(`${UPSTASH_URL}/incr/visitor_count`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${UPSTASH_TOKEN}`,
+        'Accept': 'application/json',
+      }
+    });
 
-      return {
-        success: true,
-        count: newCount
-      };
+    if (!incrementResponse.ok) {
+      throw new Error('Failed to increment count');
     }
 
-    // Return current count for existing session
+    const incrementData = await incrementResponse.json();
+
     return {
       success: true,
-      count: parseInt(localStorage.getItem(LOCAL_STORAGE_KEY) || '0')
+      count: incrementData.result
     };
-
   } catch (error) {
-    console.error('Error in incrementVisitorCount:', error);
+    console.error('Error in visitor count:', error);
     return {
       success: false,
       message: error instanceof Error ? error.message : 'Failed to update visitor count'
