@@ -168,3 +168,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Cloud Resume Challenge](https://cloudresumechallenge.dev/) for the project idea
 - AWS for the cloud infrastructure
 - The amazing open-source community for the tools and libraries used in this project
+
+
