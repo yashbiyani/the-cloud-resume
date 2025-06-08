@@ -1,4 +1,3 @@
-
 /**
  * Visitor Counter Service
  * 
@@ -11,39 +10,55 @@
  * - The Lambda function should both increment the counter and return the new count
  */
 
-const API_ENDPOINT = 'https://your-api-gateway-url.amazonaws.com/prod/visitor-counter';
+const API_ENDPOINT = 'https://www.yashbiyani.space/';
 
-export interface VisitorCountResponse {
-  count: number;
+interface VisitorResponse {
   success: boolean;
+  count?: number;
   message?: string;
 }
+
+const LOCAL_STORAGE_KEY = 'visitorCount';
+const SESSION_KEY = 'visitSession';
 
 /**
  * Increments the visitor counter and returns the updated count
  * @param page The page identifier to track (optional)
  */
-export const incrementVisitorCount = async (page: string = 'home'): Promise<VisitorCountResponse> => {
+export const incrementVisitorCount = async (page: string = 'home'): Promise<VisitorResponse> => {
   try {
-    const response = await fetch(API_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        page,
-        timestamp: new Date().toISOString(),
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    // Initialize count if it doesn't exist
+    if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, '0');
     }
 
-    return await response.json();
+    // Check if we've counted this session
+    const sessionId = sessionStorage.getItem(SESSION_KEY);
+    if (!sessionId) {
+      // New session - increment count
+      const currentCount = parseInt(localStorage.getItem(LOCAL_STORAGE_KEY) || '0');
+      const newCount = currentCount + 1;
+      localStorage.setItem(LOCAL_STORAGE_KEY, newCount.toString());
+      sessionStorage.setItem(SESSION_KEY, Date.now().toString());
+
+      return {
+        success: true,
+        count: newCount
+      };
+    }
+
+    // Return current count for existing session
+    return {
+      success: true,
+      count: parseInt(localStorage.getItem(LOCAL_STORAGE_KEY) || '0')
+    };
+
   } catch (error) {
-    console.error('Error incrementing visitor count:', error);
-    throw error;
+    console.error('Error in incrementVisitorCount:', error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : 'Failed to update visitor count'
+    };
   }
 };
 
@@ -51,45 +66,46 @@ export const incrementVisitorCount = async (page: string = 'home'): Promise<Visi
  * AWS Lambda Function Pseudo-code:
  * 
  * exports.handler = async (event) => {
+ * exports.handler = async (event) => {body);
  *   const { page } = JSON.parse(event.body);
- *   
  *   // Initialize AWS SDK
- *   const AWS = require('aws-sdk');
+ *   // Initialize AWS SDKaws-sdk');
+ *   const AWS = require('aws-sdk');oDB.DocumentClient();
  *   const docClient = new AWS.DynamoDB.DocumentClient();
- *   
  *   // Increment counter in DynamoDB
- *   const params = {
- *     TableName: 'visitor_counter',
- *     Key: { page: page || 'home' },
+ *   // Increment counter in DynamoDB
+ *   const params = {sitor_counter',
+ *     TableName: 'visitor_counter',,
+ *     Key: { page: page || 'home' },_count :inc',
  *     UpdateExpression: 'ADD visitor_count :inc',
  *     ExpressionAttributeValues: { ':inc': 1 },
  *     ReturnValues: 'UPDATED_NEW'
  *   };
- *   
  *   try {
+ *   try {st result = await docClient.update(params).promise();
  *     const result = await docClient.update(params).promise();
- *     
  *     return {
+ *     return {Code: 200,
  *       statusCode: 200,
- *       headers: {
- *         'Access-Control-Allow-Origin': '*',
+ *       headers: {Control-Allow-Origin': '*',
+ *         'Access-Control-Allow-Origin': '*',ntent-Type',
  *         'Access-Control-Allow-Headers': 'Content-Type',
- *       },
+ *       },dy: JSON.stringify({
  *       body: JSON.stringify({
- *         success: true,
+ *         success: true,Attributes.visitor_count,
  *         count: result.Attributes.visitor_count,
  *       })
- *     };
- *   } catch (error) {
+ *     };tch (error) {
+ *   } catch (error) {Error updating visitor count:', error);
  *     console.error('Error updating visitor count:', error);
- *     return {
+ *     return {Code: 500,
  *       statusCode: 500,
- *       headers: {
- *         'Access-Control-Allow-Origin': '*',
+ *       headers: {Control-Allow-Origin': '*',
+ *         'Access-Control-Allow-Origin': '*',ntent-Type',
  *         'Access-Control-Allow-Headers': 'Content-Type',
- *       },
+ *       },dy: JSON.stringify({
  *       body: JSON.stringify({
- *         success: false,
+ *         success: false,d to update visitor count',
  *         message: 'Failed to update visitor count',
  *       })
  *     };

@@ -226,7 +226,7 @@ export default function ContactSection() {
                     <TooltipTrigger asChild>
                       <Button asChild className="rounded-full">
                         <a 
-                          href="https://drive.google.com/file/d/1-oeqtR0VraTRJXMq4i-XNUuHw1blM5S-/view?usp=sharing" 
+                          href="https://drive.google.com/file/d/1TbuvuSdb4S7uXBSiT00HBUGH5qTNUDL1/view?usp=sharing" 
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-2"

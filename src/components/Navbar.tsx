@@ -121,7 +121,7 @@ export default function Navbar() {
       mobileSize: 22
     },
     { 
-      href: 'https://drive.google.com/file/d/1-oeqtR0VraTRJXMq4i-XNUuHw1blM5S-/view?usp=sharing', 
+      href: 'https://drive.google.com/file/d/1TbuvuSdb4S7uXBSiT00HBUGH5qTNUDL1/view?usp=sharing', 
       label: 'Resume', 
       icon: FileText,
       desktopSize: 18,
@@ -146,7 +146,7 @@ export default function Navbar() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <span className="text-accent">&lt;</span>
-            <span className="text-gradient">yash.dev</span>
+            <span className="text-gradient">yash.space</span>
             <span className="text-accent">/&gt;</span>
           </motion.a>
           
